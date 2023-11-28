@@ -23,9 +23,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MovieAppTheme {
-                MovieListScreen(
-                    viewModel = hiltViewModel(),
-                )
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                    MovieListScreen(
+                        viewModel = hiltViewModel(),
+                    )
+                }
             }
         }
     }

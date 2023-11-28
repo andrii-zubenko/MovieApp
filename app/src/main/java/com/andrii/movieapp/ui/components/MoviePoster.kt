@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,13 +34,15 @@ fun MoviePoster(
     movie: Movie,
     modifier: Modifier = Modifier
 ) {
-    Surface(
+    Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(290.dp)
             .clickable(
                 onClick = { }
-            )
+            ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 10.dp
+        )
     ) {
         Column {
             AsyncImage(
@@ -47,13 +51,13 @@ fun MoviePoster(
                     .placeholder(R.drawable.emptyfilmposter)
                     .build(),
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(240.dp),
+                    .fillMaxWidth(),
                 contentDescription = stringResource(R.string.movie_poster),
             )
             Box(
                 modifier = Modifier
                     .fillMaxSize()
+                    .height(50.dp)
             ) {
                 Text(
                     text = movie.title ?: "",
