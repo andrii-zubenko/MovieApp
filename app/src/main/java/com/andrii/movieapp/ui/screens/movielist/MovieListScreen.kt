@@ -22,7 +22,8 @@ fun MovieListScreen(
         is MovieListState.Success -> MovieList(
             movieListState = state as MovieListState.Success,
             screenOrientation = screenOrientation,
-            onMovieRowTap = onMovieRowTap
+            onMovieRowTap = onMovieRowTap,
+            onPulRefresh = viewModel::fetchMovies,
         )
 
         is MovieListState.Error -> MovieListError(
