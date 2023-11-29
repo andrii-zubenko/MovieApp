@@ -18,7 +18,8 @@ import com.andrii.movieapp.ui.screens.movielist.MovieListState
 fun MovieList(
     modifier: Modifier = Modifier,
     movieListState: MovieListState.Success,
-    screenOrientation: Int
+    screenOrientation: Int,
+    onMovieRowTap: (movieIndex: Int) -> Unit
 ) {
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
@@ -34,6 +35,7 @@ fun MovieList(
         items(count = movieListState.movies.size) { index ->
             MoviePoster(
                 movie = movieListState.movies[index],
+                onTap = { onMovieRowTap(index) }
             )
         }
     }
@@ -45,6 +47,7 @@ fun MovieListPreviewPortrait() {
     MovieList(
         movieListState = MovieListState.Success(sampleMovies),
         screenOrientation = Configuration.ORIENTATION_PORTRAIT,
+        onMovieRowTap = {}
     )
 }
 
@@ -54,5 +57,6 @@ fun MovieListPreviewLandscape() {
     MovieList(
         movieListState = MovieListState.Success(sampleMovies),
         screenOrientation = Configuration.ORIENTATION_LANDSCAPE,
+        onMovieRowTap = {}
     )
 }

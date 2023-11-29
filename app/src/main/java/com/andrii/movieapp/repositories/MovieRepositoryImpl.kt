@@ -29,4 +29,8 @@ class MovieRepositoryImpl(
             throw Throwable("Request failed: ${e.message}")
         }
     }
+
+    override fun getMovie(index: Int): Movie? {
+        return _movies.value.getOrNull(index)
+    }
 }

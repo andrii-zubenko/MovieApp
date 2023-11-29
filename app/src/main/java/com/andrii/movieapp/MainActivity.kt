@@ -6,15 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.andrii.movieapp.sampledata.sampleMovies
-import com.andrii.movieapp.ui.components.MovieList
-import com.andrii.movieapp.ui.screens.movielist.MovieListScreen
+import com.andrii.movieapp.ui.nav.Navigation
 import com.andrii.movieapp.ui.theme.MovieAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,13 +17,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MovieAppTheme {
-                val screenOrientation = LocalConfiguration.current.orientation
-
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    MovieListScreen(
-                        viewModel = hiltViewModel(),
-                        screenOrientation = screenOrientation,
-                    )
+                    Navigation()
                 }
             }
         }

@@ -11,6 +11,7 @@ import com.andrii.movieapp.ui.components.MovieListLoading
 fun MovieListScreen(
     viewModel: MovieListViewModel,
     screenOrientation: Int,
+    onMovieRowTap: (movieIndex: Int) -> Unit,
 ) {
 
     val state by viewModel.uiState.collectAsState()
@@ -21,6 +22,7 @@ fun MovieListScreen(
         is MovieListState.Success -> MovieList(
             movieListState = state as MovieListState.Success,
             screenOrientation = screenOrientation,
+            onMovieRowTap = onMovieRowTap
         )
 
         is MovieListState.Error -> Text(

@@ -29,14 +29,15 @@ import com.andrii.movieapp.sampledata.sampleMovies
 @Composable
 fun MoviePoster(
     movie: Movie,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onTap: () -> Unit,
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .height(330.dp)
             .clickable(
-                onClick = { }
+                onClick = onTap,
             ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
@@ -77,6 +78,7 @@ fun MoviePoster(
 @Composable
 fun MoviePosterPreview() {
     MoviePoster(
-        movie = sampleMovies[2]
+        movie = sampleMovies[2],
+        onTap = {},
     )
 }
