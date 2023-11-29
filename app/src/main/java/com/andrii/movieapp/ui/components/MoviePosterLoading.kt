@@ -15,7 +15,7 @@ fun MoviePosterLoading(
 ) {
     Box(
         modifier = modifier
-            .height(350.dp)
+            .height(330.dp)
             .fillMaxWidth()
             .shimmerEffect(),
     ) {

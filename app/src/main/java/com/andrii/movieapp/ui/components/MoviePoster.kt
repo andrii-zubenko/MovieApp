@@ -34,7 +34,7 @@ fun MoviePoster(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(350.dp)
+            .height(330.dp)
             .clickable(
                 onClick = { }
             ),
@@ -50,7 +50,7 @@ fun MoviePoster(
                     .build(),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(300.dp),
+                    .height(280.dp),
                 contentDescription = stringResource(R.string.movie_poster),
             )
             Box(
