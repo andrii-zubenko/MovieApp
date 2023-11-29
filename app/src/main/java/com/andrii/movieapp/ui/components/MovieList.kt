@@ -30,7 +30,12 @@ fun MovieList(
         },
         verticalArrangement = Arrangement.spacedBy(space = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(space = 16.dp),
-        contentPadding = PaddingValues(all = 10.dp)
+        contentPadding = PaddingValues(
+            start = 10.dp,
+            end = 10.dp,
+            top = 10.dp,
+            bottom = 70.dp,
+            )
     ) {
         items(count = movieListState.movies.size) { index ->
             MoviePoster(
