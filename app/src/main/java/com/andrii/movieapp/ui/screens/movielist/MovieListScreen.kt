@@ -9,7 +9,8 @@ import com.andrii.movieapp.ui.components.MovieListLoading
 
 @Composable
 fun MovieListScreen(
-    viewModel: MovieListViewModel
+    viewModel: MovieListViewModel,
+    screenOrientation: Int,
 ) {
 
     val state by viewModel.uiState.collectAsState()
@@ -19,6 +20,7 @@ fun MovieListScreen(
 
         is MovieListState.Success -> MovieList(
             movieListState = state as MovieListState.Success,
+            screenOrientation = screenOrientation,
         )
 
         is MovieListState.Error -> Text(
