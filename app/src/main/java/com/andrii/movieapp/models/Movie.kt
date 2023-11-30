@@ -21,6 +21,18 @@ data class Movie(
     val overview: String?,
     @Json(name = "release_date")
     val releaseDate: String?,
-    var addedToWatchLater: Boolean = false,
-    var addedToWatched: Boolean = false,
-) : Parcelable
+    var watchedStatus: String = WatchedStatus.NOT_WATCHED.statusString
+) : Parcelable {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Movie
+
+        return id == other.id
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
+    }
+}

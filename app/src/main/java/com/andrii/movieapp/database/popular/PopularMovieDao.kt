@@ -18,10 +18,10 @@ interface PopularMovieDao {
     @Query("SELECT * FROM movie")
     suspend fun getAllMovies(): List<Movie>
 
-    @Query("SELECT * FROM movie WHERE addedToWatched = 1")
+    @Query("SELECT * FROM movie WHERE watchedStatus = 'watched'")
     suspend fun getWatchedMovies(): List<Movie>
 
-    @Query("SELECT * FROM movie WHERE addedToWatchLater = 1")
+    @Query("SELECT * FROM movie WHERE watchedStatus = 'watch_later'")
     suspend fun getWatchLaterMovies(): List<Movie>
 
     @Update

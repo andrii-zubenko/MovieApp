@@ -3,6 +3,7 @@ package com.andrii.movieapp.repositories.popular
 import com.andrii.movieapp.API_KEY
 import com.andrii.movieapp.database.popular.PopularMovieDao
 import com.andrii.movieapp.models.Movie
+import com.andrii.movieapp.models.WatchedStatus
 import com.andrii.movieapp.network.MovieService
 import com.andrii.movieapp.prefs.MoviePrefs
 import kotlinx.coroutines.CoroutineScope
@@ -47,8 +48,13 @@ class PopularMovieRepositoryImpl(
                 val movies = moviesResponse.body()!!.results.toMutableList()
                     .map { movie ->
                         movie.copy(
-                            addedToWatchLater = watchLaterMovies.any { it.id == movie.id },
-                            addedToWatched = watchedMovies.any { it.id == movie.id },
+                            watchedStatus = if (watchedMovies.contains(movie)) {
+                                WatchedStatus.WATCHED.statusString
+                            } else if (watchLaterMovies.contains(movie)) {
+                                WatchedStatus.WATCH_LATER.statusString
+                            } else {
+                                WatchedStatus.NOT_WATCHED.statusString
+                            }
                         )
                     }
                 popularMovieDao.addMovies(*movies.toTypedArray())
@@ -72,14 +78,12 @@ class PopularMovieRepositoryImpl(
     }
 
     override suspend fun addToWatchLater(movie: Movie) {
-        movie.addedToWatched = false
-        movie.addedToWatchLater = true
+        movie.watchedStatus = WatchedStatus.WATCH_LATER.statusString
         popularMovieDao.updateMovie(movie)
     }
 
     override suspend fun addToWatched(movie: Movie) {
-        movie.addedToWatchLater = false
-        movie.addedToWatched = true
+        movie.watchedStatus = WatchedStatus.WATCHED.statusString
         popularMovieDao.updateMovie(movie)
     }
 }

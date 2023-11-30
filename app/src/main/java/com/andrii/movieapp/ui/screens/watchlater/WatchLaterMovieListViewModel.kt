@@ -2,6 +2,7 @@ package com.andrii.movieapp.ui.screens.watchlater
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.andrii.movieapp.models.WatchedStatus
 import com.andrii.movieapp.repositories.popular.PopularMovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,7 +30,9 @@ class WatchLaterMovieListViewModel @Inject constructor(
                 }
                 .collect {
                     _uiState.value = WatchLaterMovieListState.Success(
-                        movies = it.filter { movie -> movie.addedToWatchLater },
+                        movies = it.filter { movie ->
+                            movie.watchedStatus == WatchedStatus.WATCH_LATER.statusString
+                        },
                     )
                 }
         }

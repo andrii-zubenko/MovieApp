@@ -31,6 +31,7 @@ import coil.request.ImageRequest
 import com.andrii.movieapp.R
 import com.andrii.movieapp.TMDB_BASE_URL
 import com.andrii.movieapp.models.Movie
+import com.andrii.movieapp.models.WatchedStatus
 import com.andrii.movieapp.sampledata.sampleMovies
 
 @Composable
@@ -41,8 +42,7 @@ fun MovieDetails(
     onAddToWatchedTap: () -> Unit,
 ) {
 
-    var addedToWatched by rememberSaveable { mutableStateOf(movie.addedToWatched) }
-    var addedToWatchLater by rememberSaveable { mutableStateOf(movie.addedToWatchLater) }
+    var watchedStatus by rememberSaveable { mutableStateOf(movie.watchedStatus) }
 
     Column(
         modifier = modifier
@@ -119,50 +119,49 @@ fun MovieDetails(
             verticalAlignment = Alignment.CenterVertically,
         ) {
 
-            if (!addedToWatched) {
-                Button(
-                    onClick = {
-                        addedToWatched = !addedToWatched
-                        onAddToWatchedTap()
-                    },
-                    colors = ButtonColors(
-                        containerColor = MaterialTheme.colorScheme.secondary,
-                        contentColor = MaterialTheme.colorScheme.onSurface,
-                        disabledContainerColor = MaterialTheme.colorScheme.surface,
-                        disabledContentColor = MaterialTheme.colorScheme.onSurface,
-                    ),
-                    modifier = Modifier.width(150.dp),
-                ) {
-                    Text(
-                        text = stringResource(R.string.watched_it),
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-
-                }
-            }
-
-            if (!addedToWatchLater) {
-                Button(
-                    onClick = {
-                        addedToWatchLater = !addedToWatchLater
-                        onAddToWatchLaterTap()
-                    },
-                    colors = ButtonColors(
-                        containerColor = MaterialTheme.colorScheme.secondary,
-                        contentColor = MaterialTheme.colorScheme.onSurface,
-                        disabledContainerColor = MaterialTheme.colorScheme.surface,
-                        disabledContentColor = MaterialTheme.colorScheme.onSurface,
-                    ),
-                    modifier = Modifier.width(150.dp)
+            Button(
+                onClick = {
+                    watchedStatus = WatchedStatus.WATCHED.statusString
+                    onAddToWatchedTap()
+                },
+                colors = ButtonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSurface,
+                    disabledContainerColor = MaterialTheme.colorScheme.surface,
+                    disabledContentColor = MaterialTheme.colorScheme.onSurface,
+                ),
+                modifier = Modifier.width(150.dp),
+                enabled = watchedStatus != WatchedStatus.WATCHED.statusString
+            ) {
+                Text(
+                    text = stringResource(R.string.watched_it),
+                    color = MaterialTheme.colorScheme.onSurface
                 )
-                {
-                    Text(
-                        text = stringResource(R.string.watch_later_button),
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
 
-                }
             }
+
+            Button(
+                onClick = {
+                    watchedStatus = WatchedStatus.WATCH_LATER.statusString
+                    onAddToWatchLaterTap()
+                },
+                colors = ButtonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSurface,
+                    disabledContainerColor = MaterialTheme.colorScheme.surface,
+                    disabledContentColor = MaterialTheme.colorScheme.onSurface,
+                ),
+                modifier = Modifier.width(150.dp),
+                enabled = watchedStatus != WatchedStatus.WATCH_LATER.statusString
+            )
+            {
+                Text(
+                    text = stringResource(R.string.watch_later_button),
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+
+            }
+
         }
     }
 }
