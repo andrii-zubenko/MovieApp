@@ -1,4 +1,4 @@
-package com.andrii.movieapp.ui.screens.moviedetails
+package com.andrii.movieapp.ui.screens.popularmoviedetails
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.Flow
 @Composable
 fun MovieDetailsScreen(
     movieIndex: Int,
-    viewModel: MovieDetailsViewModel,
+    viewModel: PopularMovieDetailsViewModel,
     onNavigateUp: () -> Unit,
 ) {
     viewModel.getSelectedMovie(movieIndex)
@@ -65,7 +65,7 @@ fun MovieDetailsScreen(
 fun PreviewMovieDetailsScreen() {
     MovieDetailsScreen(
         movieIndex = 0,
-        viewModel = MovieDetailsViewModel(
+        viewModel = PopularMovieDetailsViewModel(
             popularMovieRepository = object : PopularMovieRepository {
                 override val popularMovies: Flow<List<Movie>>
                     get() = TODO("Not yet implemented")

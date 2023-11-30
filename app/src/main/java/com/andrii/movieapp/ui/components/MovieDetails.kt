@@ -48,38 +48,46 @@ fun MovieDetails(
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
-        item {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .clickable {
-                        onAddToWatchLaterTap()
-                    }
-            ) {
-                Text(
-                    text = "add to watch later",
-                    color = MaterialTheme.colorScheme.onSurface
-                )
+
+        if (!movie.addedToWatched) {
+            item {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .clickable {
+                            onAddToWatchedTap()
+                        }
+                ) {
+                    Text(
+                        text = "add to watched",
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
             }
         }
 
-        item {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .clickable {
-                        onAddToWatchedTap()
-                    }
-            ) {
-                Text(
-                    text = "add to watched",
-                    color = MaterialTheme.colorScheme.onSurface
-                )
+        if (!movie.addedToWatchLater) {
+            item {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .clickable {
+                            onAddToWatchLaterTap()
+                        }
+                ) {
+                    Text(
+                        text = "add to watch later",
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
             }
         }
+
     }
+
+
 }
 
 @Composable

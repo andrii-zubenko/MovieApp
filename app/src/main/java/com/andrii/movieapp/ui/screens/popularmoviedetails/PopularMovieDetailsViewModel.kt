@@ -1,4 +1,4 @@
-package com.andrii.movieapp.ui.screens.moviedetails
+package com.andrii.movieapp.ui.screens.popularmoviedetails
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieDetailsViewModel @Inject constructor(
+class PopularMovieDetailsViewModel @Inject constructor(
     private val popularMovieRepository: PopularMovieRepository
 ): ViewModel() {
 

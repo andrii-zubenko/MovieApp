@@ -9,8 +9,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.andrii.movieapp.ui.screens.moviedetails.MovieDetailsScreen
+import com.andrii.movieapp.ui.screens.popularmoviedetails.MovieDetailsScreen
 import com.andrii.movieapp.ui.screens.populramovielist.MovieListScreen
+import com.andrii.movieapp.ui.screens.savedmoviedetails.SavedMovieDetailsScreen
 import com.andrii.movieapp.ui.screens.watched.WatchedMovieListScreen
 import com.andrii.movieapp.ui.screens.watchlater.WatchLaterScreen
 
@@ -27,20 +28,40 @@ fun Navigation(
                 viewModel = hiltViewModel(),
                 screenOrientation = screenOrientation,
                 onMoviePosterTap = { movieIndex ->
-                    navController.navigate("${MovieDetails.route}/$movieIndex")
+                    navController.navigate("${PopularMovieDetails.route}/$movieIndex")
                 },
             )
         }
 
         composable(
-            route = MovieDetails.routeWithArg,
-            arguments = listOf(navArgument(MovieDetails.movieIndexArg) { type = NavType.IntType }),
+            route = PopularMovieDetails.routeWithArg,
+            arguments = listOf(navArgument(PopularMovieDetails.movieIndexArg) {
+                type = NavType.IntType
+            }),
         ) { backStackEntry ->
-            val movieIndex = backStackEntry.arguments!!.getInt(MovieDetails.movieIndexArg)
+            val movieIndex = backStackEntry.arguments!!.getInt(PopularMovieDetails.movieIndexArg)
             MovieDetailsScreen(
                 movieIndex = movieIndex,
                 viewModel = hiltViewModel(),
                 onNavigateUp = { navController.navigateUp() },
+            )
+        }
+
+        composable(
+            route = SavedMovieDetails.routeWithArg,
+            arguments = listOf(
+                navArgument(SavedMovieDetails.movieIndexArg) { type = NavType.IntType },
+                navArgument(SavedMovieDetails.navigatedFromScreenArg) { type = NavType.StringType },
+            ),
+        ) { backStackEntry ->
+            val movieIndex = backStackEntry.arguments!!.getInt(SavedMovieDetails.movieIndexArg)
+            val navigatedFromScreen =
+                backStackEntry.arguments!!.getString(SavedMovieDetails.navigatedFromScreenArg)
+            SavedMovieDetailsScreen(
+                movieIndex = movieIndex,
+                viewModel = hiltViewModel(),
+                onNavigateUp = { navController.navigateUp() },
+                navigatedFromScreen = navigatedFromScreen ?: "",
             )
         }
 
@@ -49,7 +70,9 @@ fun Navigation(
                 viewModel = hiltViewModel(),
                 screenOrientation = screenOrientation,
                 onMoviePosterTap = { movieIndex ->
-                    navController.navigate("${MovieDetails.route}/$movieIndex")
+                    navController.navigate(
+                        "${SavedMovieDetails.route}/$movieIndex/${WatchLater.route}"
+                    )
                 },
             )
         }
@@ -59,7 +82,9 @@ fun Navigation(
                 viewModel = hiltViewModel(),
                 screenOrientation = screenOrientation,
                 onMoviePosterTap = { movieIndex ->
-                    navController.navigate("${MovieDetails.route}/$movieIndex")
+                    navController.navigate(
+                        "${SavedMovieDetails.route}/$movieIndex/${Watched.route}"
+                    )
                 },
             )
         }

@@ -9,4 +9,7 @@ interface SavedMovieRepository {
 
     suspend fun fetchWatchedMovies()
     suspend fun fetchWatchLaterMovies()
+
+    fun getWatchedMovie(movieIndex: Int): Movie
+    fun getWatchLaterMovie(movieIndex: Int): Movie
 }

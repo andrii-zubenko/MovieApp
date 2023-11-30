@@ -4,10 +4,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Details
 import androidx.compose.material.icons.filled.DoneAll
-import androidx.compose.material.icons.filled.Fireplace
-import androidx.compose.material.icons.filled.FoodBank
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Terrain
 import androidx.compose.material.icons.filled.WatchLater
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.andrii.movieapp.R
@@ -24,11 +20,20 @@ data object MovieList : Destination {
     override val resourceId = R.string.movie_list
 }
 
-data object MovieDetails : Destination {
-    override val route = "movie_details"
+data object PopularMovieDetails : Destination {
+    override val route = "popular_movie_details"
     override val icon = Icons.Filled.Details
     override val resourceId = R.string.movie_details
     const val movieIndexArg = "movieIndex"
+    val routeWithArg = "$route/{movieIndex}"
+}
+
+data object SavedMovieDetails : Destination {
+    override val route = "saved_movie_details"
+    override val icon = Icons.Filled.Details
+    override val resourceId = R.string.movie_details
+    const val movieIndexArg = "movieIndex"
+    const val navigatedFromScreenArg = "navigatedFromScreen"
     val routeWithArg = "$route/{movieIndex}"
 }
 

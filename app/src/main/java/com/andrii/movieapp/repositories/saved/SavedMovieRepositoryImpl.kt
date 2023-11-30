@@ -23,4 +23,12 @@ class SavedMovieRepositoryImpl(
     override suspend fun fetchWatchLaterMovies() {
         _watchLaterMovies.value = savedMovieDao.getWatchLaterMovies()
     }
+
+    override fun getWatchedMovie(movieIndex: Int): Movie {
+        return watchedMovies.value[movieIndex]
+    }
+
+    override fun getWatchLaterMovie(movieIndex: Int): Movie {
+        return watchLaterMovies.value[movieIndex]
+    }
 }
