@@ -28,6 +28,7 @@ fun MovieListScreen(
 
         is MovieListState.Error -> MovieListError(
             error = (state as MovieListState.Error).error,
+            onPulRefresh = viewModel::fetchMovies,
         )
     }
 }
