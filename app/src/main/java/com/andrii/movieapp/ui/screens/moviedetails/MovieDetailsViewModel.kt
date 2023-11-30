@@ -12,20 +12,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
-    private val repository: PopularMovieRepository
+    private val popularMovieRepository: PopularMovieRepository
 ): ViewModel() {
 
     private var _selectedMovie: MutableState<Movie?> = mutableStateOf(null)
     val selectedMovie = _selectedMovie
 
     fun getSelectedMovie(movieIndex: Int) {
-        _selectedMovie.value = repository.getMovie(movieIndex)
+        _selectedMovie.value = popularMovieRepository.getMovie(movieIndex)
     }
 
     fun addToWatchLater() {
         viewModelScope.launch {
             selectedMovie.value?.let {
-                repository.addToWatchLater(it)
+                popularMovieRepository.addToWatchLater(it)
             }
         }
     }
@@ -33,7 +33,7 @@ class MovieDetailsViewModel @Inject constructor(
     fun addToWatched() {
         viewModelScope.launch {
             selectedMovie.value?.let {
-                repository.addToWatched(it)
+                popularMovieRepository.addToWatched(it)
             }
         }
     }

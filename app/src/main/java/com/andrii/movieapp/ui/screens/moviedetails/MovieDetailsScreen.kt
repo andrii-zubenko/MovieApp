@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -67,7 +66,7 @@ fun PreviewMovieDetailsScreen() {
     MovieDetailsScreen(
         movieIndex = 0,
         viewModel = MovieDetailsViewModel(
-            repository = object : PopularMovieRepository {
+            popularMovieRepository = object : PopularMovieRepository {
                 override val popularMovies: Flow<List<Movie>>
                     get() = TODO("Not yet implemented")
 
