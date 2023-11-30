@@ -1,5 +1,6 @@
-package com.andrii.movieapp.ui.screens.popularmoviedetails
+package com.andrii.movieapp.ui.screens.moviedetails
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -11,15 +12,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PopularMovieDetailsViewModel @Inject constructor(
+class MovieDetailsViewModel @Inject constructor(
     private val popularMovieRepository: PopularMovieRepository
 ): ViewModel() {
 
     private var _selectedMovie: MutableState<Movie?> = mutableStateOf(null)
     val selectedMovie = _selectedMovie
 
-    fun getSelectedMovie(movieIndex: Int) {
-        _selectedMovie.value = popularMovieRepository.getMovie(movieIndex)
+    fun getSelectedMovie(movieId: Long) {
+        Log.e("MovieDetailsViewModel", "getSelectedMovie: $movieId")
+        _selectedMovie.value = popularMovieRepository.getMovie(movieId)
     }
 
     fun addToWatchLater() {

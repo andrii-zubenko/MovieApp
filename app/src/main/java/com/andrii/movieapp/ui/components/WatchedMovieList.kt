@@ -19,7 +19,7 @@ fun WatchedMovieList(
     modifier: Modifier = Modifier,
     movieListState: WatchedMovieListState.Success,
     screenOrientation: Int,
-    onMoviePosterTap: (movieIndex: Int) -> Unit,
+    onMoviePosterTap: (movieId: Long) -> Unit,
 ) {
     if (movieListState.movies.isEmpty()) {
         Text(text = "No movies")
@@ -41,9 +41,10 @@ fun WatchedMovieList(
             )
         ) {
             items(count = movieListState.movies.size) { index ->
+                val movieId = movieListState.movies[index].id!!
                 MoviePoster(
                     movie = movieListState.movies[index],
-                    onTap = { onMoviePosterTap(index) }
+                    onTap = { onMoviePosterTap(movieId) }
                 )
             }
         }

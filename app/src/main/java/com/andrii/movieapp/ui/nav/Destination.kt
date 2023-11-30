@@ -20,21 +20,12 @@ data object MovieList : Destination {
     override val resourceId = R.string.movie_list
 }
 
-data object PopularMovieDetails : Destination {
-    override val route = "popular_movie_details"
+data object MovieDetails : Destination {
+    override val route = "movie_details"
     override val icon = Icons.Filled.Details
     override val resourceId = R.string.movie_details
-    const val movieIndexArg = "movieIndex"
-    val routeWithArg = "$route/{movieIndex}"
-}
-
-data object SavedMovieDetails : Destination {
-    override val route = "saved_movie_details"
-    override val icon = Icons.Filled.Details
-    override val resourceId = R.string.movie_details
-    const val movieIndexArg = "movieIndex"
-    const val navigatedFromScreenArg = "navigatedFromScreen"
-    val routeWithArg = "$route/{movieIndex}"
+    const val movieIdArg = "movieId"
+    val routeWithArg = "$route/{movieId}"
 }
 
 data object WatchLater : Destination {

@@ -36,7 +36,7 @@ fun MovieList(
     modifier: Modifier = Modifier,
     movieListState: PopularMovieListState.Success,
     screenOrientation: Int,
-    onMovieRowTap: (movieIndex: Int) -> Unit,
+    onMovieRowTap: (movieId: Long) -> Unit,
     onPulRefresh: () -> Unit,
 ) {
     val refreshScope = rememberCoroutineScope()
@@ -80,10 +80,11 @@ fun MovieList(
                 )
             ) {
                 items(count = movieListState.movies.size) { index ->
+                    val movieId = movieListState.movies[index].id!!
                     if (!refreshing) {
                         MoviePoster(
                             movie = movieListState.movies[index],
-                            onTap = { onMovieRowTap(index) }
+                            onTap = { onMovieRowTap(movieId) }
                         )
                     }
                 }

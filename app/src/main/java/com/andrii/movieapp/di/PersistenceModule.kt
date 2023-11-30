@@ -2,7 +2,6 @@ package com.andrii.movieapp.di
 
 import android.content.Context
 import com.andrii.movieapp.database.popular.PopularMovieDatabase
-import com.andrii.movieapp.database.saved.SavedMovieDatabase
 import com.andrii.movieapp.prefs.MoviePrefs
 import com.andrii.movieapp.prefs.MoviePrefsImpl
 import dagger.Module
@@ -26,13 +25,6 @@ class PersistenceModule {
     @Singleton
     fun providePopularMovieDatabase(@ApplicationContext context: Context): PopularMovieDatabase {
         return PopularMovieDatabase.buildDatabase(context)
-    }
-
-
-    @Provides
-    @Singleton
-    fun provideSavedMovieDatabase(@ApplicationContext context: Context): SavedMovieDatabase {
-        return SavedMovieDatabase.buildDatabase(context)
     }
 
 }

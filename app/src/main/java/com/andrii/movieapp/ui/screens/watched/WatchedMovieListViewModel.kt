@@ -2,7 +2,7 @@ package com.andrii.movieapp.ui.screens.watched
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.andrii.movieapp.repositories.saved.SavedMovieRepository
+import com.andrii.movieapp.repositories.popular.PopularMovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,42 +13,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchedMovieListViewModel @Inject constructor(
-    private val savedMovieRepository: SavedMovieRepository,
+    private val popularMovieRepository: PopularMovieRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<WatchedMovieListState>(WatchedMovieListState.Loading)
     val uiState: StateFlow<WatchedMovieListState> = _uiState.asStateFlow()
 
     init {
-        collectMovies()
-        fetchMovies()
-    }
-
-    private fun collectMovies() {
         viewModelScope.launch {
-            savedMovieRepository
-                .watchedMovies
+            popularMovieRepository
+                .popularMovies
                 .catch {
                     _uiState.value = WatchedMovieListState.Error(it)
                 }
                 .collect {
                     _uiState.value = WatchedMovieListState.Success(
-                        movies = it,
+                        movies = it.filter { movie -> movie.addedToWatched },
                     )
                 }
-        }
-    }
-
-    fun fetchMovies() {
-        _uiState.value = WatchedMovieListState.Loading
-        viewModelScope.launch {
-            try {
-                savedMovieRepository.fetchWatchedMovies()
-
-                collectMovies()
-            } catch (e: Throwable) {
-                _uiState.value = WatchedMovieListState.Error(e)
-            }
         }
     }
 }

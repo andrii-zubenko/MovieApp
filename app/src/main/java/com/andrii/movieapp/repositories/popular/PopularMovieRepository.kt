@@ -7,7 +7,7 @@ interface PopularMovieRepository {
     val popularMovies: Flow<List<Movie>>
 
     suspend fun fetchMovies()
-    fun getMovie(index: Int): Movie?
+    fun getMovie(id: Long): Movie?
     fun getLastUpdatedDate(): String
     suspend fun addToWatchLater(movie: Movie)
     suspend fun addToWatched(movie: Movie)

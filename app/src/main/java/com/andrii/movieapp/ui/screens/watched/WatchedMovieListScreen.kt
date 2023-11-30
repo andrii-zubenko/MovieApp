@@ -11,7 +11,7 @@ import com.andrii.movieapp.ui.components.WatchedMovieList
 fun WatchedMovieListScreen(
     viewModel: WatchedMovieListViewModel,
     screenOrientation: Int,
-    onMoviePosterTap: (movieIndex: Int) -> Unit,
+    onMoviePosterTap: (movieId: Long) -> Unit,
 ) {
 
     val state by viewModel.uiState.collectAsState()

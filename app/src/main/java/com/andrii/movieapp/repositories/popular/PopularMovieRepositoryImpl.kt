@@ -2,7 +2,6 @@ package com.andrii.movieapp.repositories.popular
 
 import com.andrii.movieapp.API_KEY
 import com.andrii.movieapp.database.popular.PopularMovieDao
-import com.andrii.movieapp.database.saved.SavedMovieDao
 import com.andrii.movieapp.models.Movie
 import com.andrii.movieapp.network.MovieService
 import com.andrii.movieapp.prefs.MoviePrefs
@@ -17,14 +16,13 @@ class PopularMovieRepositoryImpl(
     private val service: MovieService,
     private val prefs: MoviePrefs,
     private val popularMovieDao: PopularMovieDao,
-    private val savedMovieDao: SavedMovieDao,
 ) : PopularMovieRepository {
 
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
     private var lastUpdatedDate: String = ""
 
-    private val _movies: MutableStateFlow<List<Movie>> = MutableStateFlow(emptyList())
-    override val popularMovies: Flow<List<Movie>> = _movies.asStateFlow()
+    private val _popularMovies: MutableStateFlow<List<Movie>> = MutableStateFlow(emptyList())
+    override val popularMovies: Flow<List<Movie>> = _popularMovies.asStateFlow()
 
     init {
         coroutineScope.launch {
@@ -36,16 +34,23 @@ class PopularMovieRepositoryImpl(
     }
 
     override suspend fun fetchMovies() {
+        val watchLaterMovies = popularMovieDao.getWatchLaterMovies()
+        val watchedMovies = popularMovieDao.getWatchedMovies()
+
         try {
-            _movies.value = emptyList()
             val moviesResponse = service.getPopularMovies(API_KEY)
 
             popularMovieDao.deleteAllMovies()
 
-            _movies.value = emptyList()
-            _movies.value = if (moviesResponse.isSuccessful) {
+            _popularMovies.value = emptyList()
+            _popularMovies.value = if (moviesResponse.isSuccessful) {
                 val movies = moviesResponse.body()!!.results.toMutableList()
-
+                    .map { movie ->
+                        movie.copy(
+                            addedToWatchLater = watchLaterMovies.any { it.id == movie.id },
+                            addedToWatched = watchedMovies.any { it.id == movie.id },
+                        )
+                    }
                 popularMovieDao.addMovies(*movies.toTypedArray())
                 prefs.setLastUpdatedDate()
                 movies
@@ -53,13 +58,13 @@ class PopularMovieRepositoryImpl(
                 throw Throwable("Request failed: ${moviesResponse.errorBody()}")
             }
         } catch (e: Throwable) {
-            _movies.value = emptyList()
-            _movies.value = popularMovieDao.getAllMovies()
+            _popularMovies.value = emptyList()
+            _popularMovies.value = popularMovieDao.getAllMovies()
         }
     }
 
-    override fun getMovie(index: Int): Movie? {
-        return _movies.value.getOrNull(index)
+    override fun getMovie(id: Long): Movie? {
+        return _popularMovies.value.firstOrNull { it.id == id }
     }
 
     override fun getLastUpdatedDate(): String {
@@ -69,12 +74,12 @@ class PopularMovieRepositoryImpl(
     override suspend fun addToWatchLater(movie: Movie) {
         movie.addedToWatched = false
         movie.addedToWatchLater = true
-        savedMovieDao.addMovie(movie)
+        popularMovieDao.updateMovie(movie)
     }
 
     override suspend fun addToWatched(movie: Movie) {
         movie.addedToWatchLater = false
         movie.addedToWatched = true
-        savedMovieDao.addMovie(movie)
+        popularMovieDao.updateMovie(movie)
     }
 }

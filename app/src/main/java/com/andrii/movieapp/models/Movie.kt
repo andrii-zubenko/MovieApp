@@ -12,7 +12,7 @@ data class Movie(
     @Json(name = "poster_path")
     val posterPath: String?,
     @PrimaryKey
-    val id: Int?,
+    val id: Long?,
     @Json(name = "backdrop_path")
     val backdropPath: String?,
     val title: String?,

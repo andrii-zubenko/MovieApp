@@ -10,7 +10,7 @@ import com.andrii.movieapp.ui.components.WatchLaterMovieList
 fun WatchLaterScreen(
     viewModel: WatchLaterMovieListViewModel,
     screenOrientation: Int,
-    onMoviePosterTap: (movieIndex: Int) -> Unit,
+    onMoviePosterTap: (movieId: Long) -> Unit,
 ) {
     val state by viewModel.uiState.collectAsState()
 
