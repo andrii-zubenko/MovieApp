@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -20,7 +19,7 @@ fun WatchLaterMovieList(
     onMoviePosterTap: (movieId: Long) -> Unit,
 ) {
     if (movieListState.movies.isEmpty()) {
-        Text(text = "No movies")
+        NoMoviesAdded()
     } else {
         LazyVerticalGrid(
             modifier = modifier.fillMaxSize(),

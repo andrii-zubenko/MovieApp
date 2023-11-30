@@ -1,10 +1,10 @@
 package com.andrii.movieapp.ui.screens.watched
 
-
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import com.andrii.movieapp.ui.components.GenericError
+import com.andrii.movieapp.ui.components.LoadingScreen
 import com.andrii.movieapp.ui.components.WatchedMovieList
 
 @Composable
@@ -18,7 +18,7 @@ fun WatchedMovieListScreen(
 
     when (state) {
 
-        is WatchedMovieListState.Loading -> Text(text = "Loading...")
+        is WatchedMovieListState.Loading -> LoadingScreen()
 
         is WatchedMovieListState.Success -> WatchedMovieList(
             movieListState = state as WatchedMovieListState.Success,
@@ -26,6 +26,6 @@ fun WatchedMovieListScreen(
             onMoviePosterTap = onMoviePosterTap,
         )
 
-        is WatchedMovieListState.Error -> Text(text = "Error")
+        is WatchedMovieListState.Error -> GenericError()
     }
 }

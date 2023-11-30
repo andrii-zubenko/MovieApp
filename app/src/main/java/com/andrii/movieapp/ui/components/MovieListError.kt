@@ -8,8 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,9 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.andrii.movieapp.R
 import kotlinx.coroutines.launch
 
 
@@ -49,16 +45,7 @@ fun MovieListError(
         ) {
             if (!refreshing) {
                 item {
-                    Box(
-                        modifier = modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    )
-                    {
-                        Text(
-                            text = stringResource(R.string.oops_something_is_not_right),
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                    }
+                    GenericError(modifier = modifier)
                 }
             }
         }
