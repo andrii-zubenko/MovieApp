@@ -1,4 +1,4 @@
-package com.andrii.movieapp.ui.screens.movielist
+package com.andrii.movieapp.ui.screens.populramovielist
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -9,25 +9,25 @@ import com.andrii.movieapp.ui.components.MovieListLoading
 
 @Composable
 fun MovieListScreen(
-    viewModel: MovieListViewModel,
+    viewModel: PopularMovieListViewModel,
     screenOrientation: Int,
-    onMovieRowTap: (movieIndex: Int) -> Unit,
+    onMoviePosterTap: (movieIndex: Int) -> Unit,
 ) {
 
     val state by viewModel.uiState.collectAsState()
 
     when (state) {
-        is MovieListState.Loading -> MovieListLoading()
+        is PopularMovieListState.Loading -> MovieListLoading()
 
-        is MovieListState.Success -> MovieList(
-            movieListState = state as MovieListState.Success,
+        is PopularMovieListState.Success -> MovieList(
+            movieListState = state as PopularMovieListState.Success,
             screenOrientation = screenOrientation,
-            onMovieRowTap = onMovieRowTap,
+            onMovieRowTap = onMoviePosterTap,
             onPulRefresh = viewModel::fetchMovies,
         )
 
-        is MovieListState.Error -> MovieListError(
-            error = (state as MovieListState.Error).error,
+        is PopularMovieListState.Error -> MovieListError(
+            error = (state as PopularMovieListState.Error).error,
             onPulRefresh = viewModel::fetchMovies,
         )
     }

@@ -3,6 +3,7 @@ package com.andrii.movieapp.ui.screens.moviedetails
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -15,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.andrii.movieapp.R
 import com.andrii.movieapp.models.Movie
-import com.andrii.movieapp.repositories.MovieRepository
+import com.andrii.movieapp.repositories.popular.PopularMovieRepository
 import com.andrii.movieapp.sampledata.sampleMovies
 import com.andrii.movieapp.ui.components.MovieDetails
 import kotlinx.coroutines.flow.Flow
@@ -37,7 +38,7 @@ fun MovieDetailsScreen(
                             onNavigateUp()
                         }) {
                             Icon(
-                                imageVector = Icons.Filled.ArrowBack,
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = stringResource(R.string.back_button)
                             )
                         }
@@ -48,6 +49,12 @@ fun MovieDetailsScreen(
                 MovieDetails(
                     movie = viewModel.selectedMovie.value!!,
                     modifier = Modifier.padding(paddingValues),
+                    onAddToWatchLaterTap = {
+                        viewModel.addToWatchLater()
+                    },
+                    onAddToWatchedTap = {
+                        viewModel.addToWatched()
+                    }
                 )
             }
         )
@@ -60,8 +67,8 @@ fun PreviewMovieDetailsScreen() {
     MovieDetailsScreen(
         movieIndex = 0,
         viewModel = MovieDetailsViewModel(
-            repository = object : MovieRepository {
-                override val movies: Flow<List<Movie>>
+            repository = object : PopularMovieRepository {
+                override val popularMovies: Flow<List<Movie>>
                     get() = TODO("Not yet implemented")
 
                 override suspend fun fetchMovies() {

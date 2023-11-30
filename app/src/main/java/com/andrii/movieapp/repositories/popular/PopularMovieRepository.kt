@@ -1,10 +1,10 @@
-package com.andrii.movieapp.repositories
+package com.andrii.movieapp.repositories.popular
 
 import com.andrii.movieapp.models.Movie
 import kotlinx.coroutines.flow.Flow
 
-interface MovieRepository {
-    val movies: Flow<List<Movie>>
+interface PopularMovieRepository {
+    val popularMovies: Flow<List<Movie>>
 
     suspend fun fetchMovies()
     fun getMovie(index: Int): Movie?

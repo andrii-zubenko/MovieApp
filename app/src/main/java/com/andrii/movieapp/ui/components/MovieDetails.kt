@@ -1,5 +1,7 @@
 package com.andrii.movieapp.ui.components
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,6 +25,8 @@ import com.andrii.movieapp.sampledata.sampleMovies
 fun MovieDetails(
     movie: Movie,
     modifier: Modifier,
+    onAddToWatchLaterTap: () -> Unit,
+    onAddToWatchedTap: () -> Unit,
 ) {
     LazyColumn(modifier = modifier) {
         item {
@@ -44,6 +48,37 @@ fun MovieDetails(
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
+        item {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .clickable {
+                        onAddToWatchLaterTap()
+                    }
+            ) {
+                Text(
+                    text = "add to watch later",
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
+        }
+
+        item {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .clickable {
+                        onAddToWatchedTap()
+                    }
+            ) {
+                Text(
+                    text = "add to watched",
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
+        }
     }
 }
 
@@ -53,5 +88,7 @@ fun PreviewMovieDetails() {
     MovieDetails(
         movie = sampleMovies.first(),
         modifier = Modifier,
+        onAddToWatchLaterTap = {},
+        onAddToWatchedTap = {},
     )
 }

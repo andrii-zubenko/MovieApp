@@ -1,4 +1,4 @@
-package com.andrii.movieapp.database
+package com.andrii.movieapp.database.popular
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -8,7 +8,7 @@ import androidx.room.Update
 import com.andrii.movieapp.models.Movie
 
 @Dao
-interface MovieDao {
+interface PopularMovieDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addMovie(movie: Movie)
 

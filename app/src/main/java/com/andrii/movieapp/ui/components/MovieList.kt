@@ -27,14 +27,14 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.andrii.movieapp.sampledata.sampleMovies
-import com.andrii.movieapp.ui.screens.movielist.MovieListState
+import com.andrii.movieapp.ui.screens.populramovielist.PopularMovieListState
 import com.andrii.movieapp.utils.formatTimestamp
 import kotlinx.coroutines.launch
 
 @Composable
 fun MovieList(
     modifier: Modifier = Modifier,
-    movieListState: MovieListState.Success,
+    movieListState: PopularMovieListState.Success,
     screenOrientation: Int,
     onMovieRowTap: (movieIndex: Int) -> Unit,
     onPulRefresh: () -> Unit,
@@ -97,7 +97,7 @@ fun MovieList(
 @Composable
 fun MovieListPreviewPortrait() {
     MovieList(
-        movieListState = MovieListState.Success(sampleMovies, "2023-11-29 16:37:15"),
+        movieListState = PopularMovieListState.Success(sampleMovies, "2023-11-29 16:37:15"),
         screenOrientation = Configuration.ORIENTATION_PORTRAIT,
         onMovieRowTap = {},
         onPulRefresh = {},
@@ -108,7 +108,7 @@ fun MovieListPreviewPortrait() {
 @Composable
 fun MovieListPreviewLandscape() {
     MovieList(
-        movieListState = MovieListState.Success(sampleMovies, "2023-11-29 16:37:15"),
+        movieListState = PopularMovieListState.Success(sampleMovies, "2023-11-29 16:37:15"),
         screenOrientation = Configuration.ORIENTATION_LANDSCAPE,
         onMovieRowTap = {},
         onPulRefresh = {},
