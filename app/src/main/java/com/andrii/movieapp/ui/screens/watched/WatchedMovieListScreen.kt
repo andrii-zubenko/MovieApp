@@ -1,5 +1,6 @@
 package com.andrii.movieapp.ui.screens.watched
 
+
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -16,7 +17,8 @@ fun WatchedMovieListScreen(
     val state by viewModel.uiState.collectAsState()
 
     when (state) {
-        is WatchedMovieListState.Loading -> Text(text = "Loading")
+
+        is WatchedMovieListState.Loading -> Text(text = "Loading...")
 
         is WatchedMovieListState.Success -> WatchedMovieList(
             movieListState = state as WatchedMovieListState.Success,

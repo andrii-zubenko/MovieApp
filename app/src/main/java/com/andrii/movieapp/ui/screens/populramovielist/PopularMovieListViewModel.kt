@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andrii.movieapp.repositories.popular.PopularMovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -42,7 +41,6 @@ class PopularMovieListViewModel @Inject constructor(
         _uiState.value = PopularMovieListState.Loading
         viewModelScope.launch {
             try {
-                delay(2000L)
                 repository.fetchMovies()
             } catch (e: Throwable) {
                 _uiState.value = PopularMovieListState.Error(e)

@@ -16,10 +16,16 @@ class WatchLaterMovieListViewModel @Inject constructor(
     private val repository: WatchLaterMovieRepository,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<WatchLaterMovieListState>(WatchLaterMovieListState.Loading)
+    private val _uiState =
+        MutableStateFlow<WatchLaterMovieListState>(WatchLaterMovieListState.Loading)
     val uiState: StateFlow<WatchLaterMovieListState> = _uiState.asStateFlow()
 
     init {
+        collectMovies()
+        fetchMovies()
+    }
+
+    private fun collectMovies() {
         viewModelScope.launch {
             repository
                 .watchLaterMovies
@@ -32,7 +38,6 @@ class WatchLaterMovieListViewModel @Inject constructor(
                     )
                 }
         }
-        fetchMovies()
     }
 
     fun fetchMovies() {
@@ -40,6 +45,8 @@ class WatchLaterMovieListViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 repository.fetchMovies()
+
+                collectMovies()
             } catch (e: Throwable) {
                 _uiState.value = WatchLaterMovieListState.Error(e)
             }

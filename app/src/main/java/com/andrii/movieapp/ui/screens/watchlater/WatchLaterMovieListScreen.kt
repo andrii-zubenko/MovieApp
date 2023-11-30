@@ -15,7 +15,7 @@ fun WatchLaterScreen(
     val state by viewModel.uiState.collectAsState()
 
     when (state) {
-        is WatchLaterMovieListState.Loading -> Text(text = "Loading")
+        is WatchLaterMovieListState.Loading -> Text(text = "Loading...")
 
         is WatchLaterMovieListState.Success -> WatchLaterMovieList(
             movieListState = state as WatchLaterMovieListState.Success,
