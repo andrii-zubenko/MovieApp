@@ -1,14 +1,18 @@
 package com.andrii.movieapp.ui.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,7 +37,18 @@ fun MovieDetails(
     onAddToWatchLaterTap: () -> Unit,
     onAddToWatchedTap: () -> Unit,
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+            .padding(
+                PaddingValues(
+                    start = 10.dp,
+                    end = 10.dp,
+                    top = 10.dp,
+                    bottom = 70.dp,
+                )
+            )
+            .verticalScroll(enabled = true, state = rememberScrollState())
+    ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(TMDB_BASE_URL + movie.backdropPath)
