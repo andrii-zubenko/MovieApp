@@ -8,4 +8,6 @@ interface MovieRepository {
 
     suspend fun fetchMovies()
     fun getMovie(index: Int): Movie?
+
+    fun getLastUpdatedDate(): String
 }

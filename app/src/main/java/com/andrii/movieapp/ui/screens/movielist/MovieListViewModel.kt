@@ -30,6 +30,7 @@ class MovieListViewModel @Inject constructor(
                 .collect {
                     _uiState.value = MovieListState.Success(
                         movies = it,
+                        lastUpdatedDate = repository.getLastUpdatedDate(),
                     )
                 }
         }

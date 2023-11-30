@@ -41,6 +41,7 @@ fun MovieDetails(
             Text(
                 text = movie.title ?: "",
                 modifier = Modifier.padding(8.dp),
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
     }
