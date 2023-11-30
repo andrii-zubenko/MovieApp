@@ -2,8 +2,7 @@ package com.andrii.movieapp.repositories.popular
 
 import com.andrii.movieapp.API_KEY
 import com.andrii.movieapp.database.popular.PopularMovieDao
-import com.andrii.movieapp.database.watched.WatchedMovieDao
-import com.andrii.movieapp.database.watchlater.WatchLaterMovieDao
+import com.andrii.movieapp.database.saved.SavedMovieDao
 import com.andrii.movieapp.models.Movie
 import com.andrii.movieapp.network.MovieService
 import com.andrii.movieapp.prefs.MoviePrefs
@@ -18,8 +17,7 @@ class PopularMovieRepositoryImpl(
     private val service: MovieService,
     private val prefs: MoviePrefs,
     private val popularMovieDao: PopularMovieDao,
-    private val watchLaterMovieDao: WatchLaterMovieDao,
-    private val watchedMovieDao: WatchedMovieDao,
+    private val savedMovieDao: SavedMovieDao,
 ) : PopularMovieRepository {
 
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
@@ -69,10 +67,14 @@ class PopularMovieRepositoryImpl(
     }
 
     override suspend fun addToWatchLater(movie: Movie) {
-        watchLaterMovieDao.addMovie(movie)
+        movie.addedToWatched = false
+        movie.addedToWatchLater = true
+        savedMovieDao.addMovie(movie)
     }
 
     override suspend fun addToWatched(movie: Movie) {
-        watchedMovieDao.addMovie(movie)
+        movie.addedToWatchLater = false
+        movie.addedToWatched = true
+        savedMovieDao.addMovie(movie)
     }
 }

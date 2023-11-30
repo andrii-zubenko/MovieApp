@@ -2,7 +2,7 @@ package com.andrii.movieapp.ui.screens.watched
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.andrii.movieapp.repositories.watched.WatchedMovieRepository
+import com.andrii.movieapp.repositories.saved.SavedMovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchedMovieListViewModel @Inject constructor(
-    private val repository: WatchedMovieRepository,
+    private val savedMovieRepository: SavedMovieRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<WatchedMovieListState>(WatchedMovieListState.Loading)
@@ -26,7 +26,7 @@ class WatchedMovieListViewModel @Inject constructor(
 
     private fun collectMovies() {
         viewModelScope.launch {
-            repository
+            savedMovieRepository
                 .watchedMovies
                 .catch {
                     _uiState.value = WatchedMovieListState.Error(it)
@@ -43,7 +43,7 @@ class WatchedMovieListViewModel @Inject constructor(
         _uiState.value = WatchedMovieListState.Loading
         viewModelScope.launch {
             try {
-                repository.fetchMovies()
+                savedMovieRepository.fetchWatchedMovies()
 
                 collectMovies()
             } catch (e: Throwable) {

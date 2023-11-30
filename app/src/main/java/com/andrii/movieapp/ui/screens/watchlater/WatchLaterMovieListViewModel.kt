@@ -2,7 +2,7 @@ package com.andrii.movieapp.ui.screens.watchlater
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.andrii.movieapp.repositories.watchlater.WatchLaterMovieRepository
+import com.andrii.movieapp.repositories.saved.SavedMovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchLaterMovieListViewModel @Inject constructor(
-    private val repository: WatchLaterMovieRepository,
+    private val savedMovieRepository: SavedMovieRepository,
 ) : ViewModel() {
 
     private val _uiState =
@@ -27,7 +27,7 @@ class WatchLaterMovieListViewModel @Inject constructor(
 
     private fun collectMovies() {
         viewModelScope.launch {
-            repository
+            savedMovieRepository
                 .watchLaterMovies
                 .catch {
                     _uiState.value = WatchLaterMovieListState.Error(it)
@@ -44,7 +44,7 @@ class WatchLaterMovieListViewModel @Inject constructor(
         _uiState.value = WatchLaterMovieListState.Loading
         viewModelScope.launch {
             try {
-                repository.fetchMovies()
+                savedMovieRepository.fetchWatchLaterMovies()
 
                 collectMovies()
             } catch (e: Throwable) {

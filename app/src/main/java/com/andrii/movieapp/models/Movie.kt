@@ -21,6 +21,6 @@ data class Movie(
     val overview: String?,
     @Json(name = "release_date")
     val releaseDate: String?,
-    val addedToWatchLater: Boolean = false,
-    val addedToWatched: Boolean = false,
+    var addedToWatchLater: Boolean = false,
+    var addedToWatched: Boolean = false,
 ) : Parcelable
