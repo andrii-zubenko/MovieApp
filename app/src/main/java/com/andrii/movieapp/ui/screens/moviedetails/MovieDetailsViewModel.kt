@@ -20,7 +20,6 @@ class MovieDetailsViewModel @Inject constructor(
     val selectedMovie = _selectedMovie
 
     fun getSelectedMovie(movieId: Long) {
-        Log.e("MovieDetailsViewModel", "getSelectedMovie: $movieId")
         _selectedMovie.value = popularMovieRepository.getMovie(movieId)
     }
 
