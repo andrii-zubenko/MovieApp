@@ -1,21 +1,24 @@
 package com.andrii.movieapp.ui.components
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -37,6 +40,10 @@ fun MovieDetails(
     onAddToWatchLaterTap: () -> Unit,
     onAddToWatchedTap: () -> Unit,
 ) {
+
+    var addedToWatched by rememberSaveable { mutableStateOf(movie.addedToWatched) }
+    var addedToWatchLater by rememberSaveable { mutableStateOf(movie.addedToWatchLater) }
+
     Column(
         modifier = modifier
             .padding(
@@ -91,7 +98,7 @@ fun MovieDetails(
         }
 
         Text(
-            text = "Overview",
+            text = stringResource(R.string.overview),
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.padding(8.dp),
             color = MaterialTheme.colorScheme.onSurface
@@ -104,40 +111,58 @@ fun MovieDetails(
             color = MaterialTheme.colorScheme.onSurface
         )
 
-        if (!movie.addedToWatched) {
+        Row(
+            modifier = modifier
+                .padding(all = 8.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .clickable {
+            if (!addedToWatched) {
+                Button(
+                    onClick = {
+                        addedToWatched = !addedToWatched
                         onAddToWatchedTap()
-                    }
-            ) {
-                Text(
-                    text = "add to watched",
-                    color = MaterialTheme.colorScheme.onSurface
-                )
+                    },
+                    colors = ButtonColors(
+                        containerColor = MaterialTheme.colorScheme.secondary,
+                        contentColor = MaterialTheme.colorScheme.onSurface,
+                        disabledContainerColor = MaterialTheme.colorScheme.surface,
+                        disabledContentColor = MaterialTheme.colorScheme.onSurface,
+                    ),
+                    modifier = Modifier.width(150.dp),
+                ) {
+                    Text(
+                        text = stringResource(R.string.watched_it),
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+
+                }
             }
 
-        }
-
-        if (!movie.addedToWatchLater) {
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .clickable {
+            if (!addedToWatchLater) {
+                Button(
+                    onClick = {
+                        addedToWatchLater = !addedToWatchLater
                         onAddToWatchLaterTap()
-                    }
-            ) {
-                Text(
-                    text = "add to watch later",
-                    color = MaterialTheme.colorScheme.onSurface
+                    },
+                    colors = ButtonColors(
+                        containerColor = MaterialTheme.colorScheme.secondary,
+                        contentColor = MaterialTheme.colorScheme.onSurface,
+                        disabledContainerColor = MaterialTheme.colorScheme.surface,
+                        disabledContentColor = MaterialTheme.colorScheme.onSurface,
+                    ),
+                    modifier = Modifier.width(150.dp)
                 )
-            }
+                {
+                    Text(
+                        text = stringResource(R.string.watch_later_button),
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
 
+                }
+            }
         }
     }
 }
