@@ -8,6 +8,7 @@ interface MovieRepository {
 
     suspend fun fetchMovies()
     fun getMovie(index: Int): Movie?
-
     fun getLastUpdatedDate(): String
+    suspend fun addToWatchLater(movie: Movie)
+    suspend fun addToWatched(movie: Movie)
 }

@@ -52,8 +52,6 @@ fun MovieDetailsScreen(
             }
         )
     }
-
-
 }
 
 @Composable
@@ -67,11 +65,23 @@ fun PreviewMovieDetailsScreen() {
                     get() = TODO("Not yet implemented")
 
                 override suspend fun fetchMovies() {
-                    TODO("Not yet implemented")
+                    // do nothing
                 }
 
                 override fun getMovie(index: Int): Movie {
                     return sampleMovies[index]
+                }
+
+                override fun getLastUpdatedDate(): String {
+                    return "2021-09-01"
+                }
+
+                override suspend fun addToWatchLater(movie: Movie) {
+                    // do nothing
+                }
+
+                override suspend fun addToWatched(movie: Movie) {
+                    // do nothing
                 }
             }
         ),
