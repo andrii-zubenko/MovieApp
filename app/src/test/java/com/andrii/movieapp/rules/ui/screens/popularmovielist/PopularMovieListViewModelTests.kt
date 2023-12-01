@@ -52,4 +52,32 @@ class PopularMovieListViewModelTests {
             )
         }
     }
+
+    @Test
+    fun `fetchMovies returns error`() = runTest {
+        // Arrange
+        val mockRepository = mockk<PopularMovieRepository>()
+        val movieFlow = MutableStateFlow<List<Movie>>(emptyList())
+
+        every { mockRepository.popularMovies } returns movieFlow
+        every { mockRepository.getLastUpdatedDate() } returns 0L
+        every { mockRepository.isFromApi() } returns true
+
+        coEvery { mockRepository.fetchMovies() } coAnswers {
+            delay(500); movieFlow.value = sampleMovies
+        }
+
+        val expectedThrowable = Throwable("Something is not right")
+        coEvery { mockRepository.fetchMovies() } coAnswers {
+            delay(500); throw expectedThrowable
+        }
+
+        val sut = PopularMovieListViewModel(mockRepository)
+
+        // Assert
+        sut.uiState.test {
+            assertThat(awaitItem()).isEqualTo(PopularMovieListState.Loading)
+            assertThat(awaitItem()).isEqualTo(PopularMovieListState.Error(expectedThrowable))
+        }
+    }
 }
