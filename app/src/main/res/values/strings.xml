@@ -17,4 +17,5 @@
     <string name="last_live_update_on">Last live update on: %1$s</string>
     <string name="data_loaded_from_api">Loaded from API</string>
     <string name="data_loaded_from_local_storage">Loaded from local storage</string>
+    <string name="vote_average_text">%1$s / 10</string>
 </resources>

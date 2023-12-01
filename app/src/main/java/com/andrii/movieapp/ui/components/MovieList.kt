@@ -23,6 +23,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
@@ -33,6 +34,10 @@ import com.andrii.movieapp.sampledata.sampleMovies
 import com.andrii.movieapp.ui.screens.populramovielist.PopularMovieListState
 import com.andrii.movieapp.utils.formatTimestamp
 import kotlinx.coroutines.launch
+
+private const val MOVIE_LIST_LAST_UPDATED_DATE_TAG = "MOVIE_LIST_LAST_UPDATED_DATE_TAG"
+private const val MOVIE_LIST_DATA_SOURCE_TAG = "MOVIE_LIST_DATA_SOURCE_TAG"
+private const val MOVIE_POSTER_TAG = "MOVIE_POSTER_TAG"
 
 @Composable
 fun MovieList(
@@ -71,7 +76,8 @@ fun MovieList(
                         formatTimestamp(movieListState.lastUpdatedDate)
                     ),
                     color = MaterialTheme.colorScheme.secondary,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.testTag(MOVIE_LIST_LAST_UPDATED_DATE_TAG)
                 )
                 Text(
                     text = if (movieListState.fromApi) {
@@ -80,7 +86,8 @@ fun MovieList(
                         stringResource(R.string.data_loaded_from_local_storage)
                     },
                     color = MaterialTheme.colorScheme.secondary,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.testTag(MOVIE_LIST_DATA_SOURCE_TAG)
                 )
             }
         }
@@ -106,7 +113,8 @@ fun MovieList(
                     if (!refreshing) {
                         MoviePoster(
                             movie = movieListState.movies[index],
-                            onTap = { onMovieRowTap(movieId) }
+                            onTap = { onMovieRowTap(movieId) },
+                            modifier = Modifier.testTag("${MOVIE_POSTER_TAG}_$index")
                         )
                     }
                 }

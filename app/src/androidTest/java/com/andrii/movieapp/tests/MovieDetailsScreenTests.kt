@@ -2,6 +2,8 @@ package com.andrii.movieapp.tests
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.andrii.movieapp.MainActivity
+import com.andrii.movieapp.robots.movieDetails
+import com.andrii.movieapp.robots.movieList
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Rule
@@ -13,13 +15,25 @@ class MovieDetailsScreenTests {
     var hiltRule = HiltAndroidRule(this)
 
     @get:Rule
-    var activityScenarioRule =
+    var composeTestRule =
         createAndroidComposeRule<MainActivity>()
 
-
     @Test
-    fun movieDetails() {
-        Thread.sleep(10000)
+    fun givenUserIsOnPopularMovieListScreenLastUpdatedDateAndDataSourceIsDisplayed() {
+        movieList(composeTestRule) {
+            verifyLastUpdatedDateTextDisplayed()
+            verifyDataSourceTextDisplayed()
+        }
     }
 
+    @Test
+    fun givenUserTapsOnFirstMoviePosterThenMovieDetailsScreenIsDisplayed() {
+        movieList(composeTestRule) {
+            tapOnFirstMoviePoster()
+        }
+
+        movieDetails(composeTestRule) {
+            verifyUi()
+        }
+    }
 }

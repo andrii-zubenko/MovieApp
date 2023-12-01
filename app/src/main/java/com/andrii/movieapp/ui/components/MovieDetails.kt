@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,6 +35,13 @@ import com.andrii.movieapp.TMDB_BASE_URL
 import com.andrii.movieapp.models.Movie
 import com.andrii.movieapp.models.WatchedStatus
 import com.andrii.movieapp.sampledata.sampleMovies
+
+private const val MOVIE_LARGE_POSTER_TAG = "MOVIE_LARGE_POSTER_TAG"
+private const val MOVIE_TITLE = "MOVIE_TITLE"
+private const val MOVIE_RATING = "MOVIE_RATING"
+private const val MOVIE_RELEASED_DATE = "MOVIE_RELEASED_DATE"
+private const val MOVIE_OVERVIEW_TITLE = "MOVIE_OVERVIEW_TITLE"
+private const val MOVIE_OVERVIEW_BODY = "MOVIE_OVERVIEW_BODY"
 
 @Composable
 fun MovieDetails(
@@ -64,7 +72,8 @@ fun MovieDetails(
                 .build(),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(285.dp),
+                .height(285.dp)
+                .testTag(MOVIE_LARGE_POSTER_TAG),
             contentDescription = stringResource(R.string.movie_large_poster)
         )
 
@@ -76,15 +85,19 @@ fun MovieDetails(
             Text(
                 text = movie.title ?: "",
                 style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .padding(8.dp)
+                    .testTag(MOVIE_TITLE),
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
 
             Text(
-                text = "${movie.voteAverage} / 10",
+                text = stringResource(R.string.vote_average_text, movie.voteAverage.toString()),
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .padding(8.dp)
+                    .testTag(MOVIE_RATING),
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
@@ -92,7 +105,9 @@ fun MovieDetails(
             Text(
                 text = stringResource(R.string.released, movie.releaseDate ?: ""),
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier
+                    .padding(8.dp)
+                    .testTag(MOVIE_RELEASED_DATE),
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
@@ -101,14 +116,18 @@ fun MovieDetails(
         Text(
             text = stringResource(R.string.overview),
             style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier
+                .padding(8.dp)
+                .testTag(MOVIE_OVERVIEW_TITLE),
             color = MaterialTheme.colorScheme.onSurface
         )
 
         Text(
             text = movie.overview ?: "",
             style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier
+                .padding(8.dp)
+                .testTag(MOVIE_OVERVIEW_BODY),
             color = MaterialTheme.colorScheme.onSurface
         )
 
