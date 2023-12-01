@@ -24,7 +24,6 @@ class RepositoryModule {
     ): PopularMovieRepository = PopularMovieRepositoryImpl(
         service,
         prefs,
-        popularMovieDatabase.popularMovieDao(),
+        popularMovieDatabase.popularMovieDao()
     )
-
 }

@@ -24,7 +24,7 @@ fun MainScreen() {
     Scaffold(
         bottomBar = {
             MovieBottomNavigation(navController, bottomNavigationItems)
-        },
+        }
     ) { paddingValues ->
         Navigation(
             navController,

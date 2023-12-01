@@ -11,19 +11,17 @@ import com.andrii.movieapp.ui.components.WatchedMovieList
 fun WatchedMovieListScreen(
     viewModel: WatchedMovieListViewModel,
     screenOrientation: Int,
-    onMoviePosterTap: (movieId: Long) -> Unit,
+    onMoviePosterTap: (movieId: Long) -> Unit
 ) {
-
     val state by viewModel.uiState.collectAsState()
 
     when (state) {
-
         is WatchedMovieListState.Loading -> LoadingScreen()
 
         is WatchedMovieListState.Success -> WatchedMovieList(
             movieListState = state as WatchedMovieListState.Success,
             screenOrientation = screenOrientation,
-            onMoviePosterTap = onMoviePosterTap,
+            onMoviePosterTap = onMoviePosterTap
         )
 
         is WatchedMovieListState.Error -> GenericError()

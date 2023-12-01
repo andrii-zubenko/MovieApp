@@ -22,14 +22,17 @@ fun MovieBottomNavigation(
 ) {
     BottomNavigation(
         backgroundColor = MaterialTheme.colorScheme.surface,
-        contentColor = MaterialTheme.colorScheme.onSurface,
+        contentColor = MaterialTheme.colorScheme.onSurface
     ) {
         val currentRoute = currentRoute(navController)
         items.forEach { screen ->
             BottomNavigationItem(
-                icon = { Icon(
-                    imageVector = screen.icon,
-                    contentDescription = stringResource(screen.resourceId)) },
+                icon = {
+                    Icon(
+                        imageVector = screen.icon,
+                        contentDescription = stringResource(screen.resourceId)
+                    )
+                },
                 label = { Text(stringResource(id = screen.resourceId)) },
                 selected = currentRoute == screen.route,
                 onClick = {
@@ -37,7 +40,7 @@ fun MovieBottomNavigation(
                         navController.navigate(screen.route)
                     }
                 },
-                unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
+                unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled)
             )
         }
     }
@@ -57,7 +60,7 @@ fun MovieBottomNavigationPreview() {
         items = listOf(
             MovieList,
             WatchLater,
-            Watched,
+            Watched
         )
     )
 }

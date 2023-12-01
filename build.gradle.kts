@@ -7,8 +7,15 @@ plugins {
 }
 true // Needed to make the Suppress annotation work for the plugins block
 
+
 buildscript {
+    repositories {
+        // Other repositories...
+        mavenCentral()
+    }
+
     dependencies {
         classpath(libs.secrets.gradle.plugin)
+        classpath(libs.ktlint.gradle)
     }
 }

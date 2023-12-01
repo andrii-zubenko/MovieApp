@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 
-
 @Composable
 fun MovieListError(
     error: Throwable,
@@ -59,6 +58,6 @@ fun MovieListError(
 fun ErrorPreview() {
     MovieListError(
         error = Throwable("Error message"),
-        onPulRefresh = {},
+        onPulRefresh = {}
     )
 }

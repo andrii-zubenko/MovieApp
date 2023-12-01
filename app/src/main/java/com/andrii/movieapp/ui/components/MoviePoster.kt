@@ -30,14 +30,14 @@ import com.andrii.movieapp.sampledata.sampleMovies
 fun MoviePoster(
     movie: Movie,
     modifier: Modifier = Modifier,
-    onTap: () -> Unit,
+    onTap: () -> Unit
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .height(330.dp)
             .clickable(
-                onClick = onTap,
+                onClick = onTap
             ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
@@ -52,7 +52,7 @@ fun MoviePoster(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(280.dp),
-                contentDescription = stringResource(R.string.movie_poster),
+                contentDescription = stringResource(R.string.movie_poster)
             )
             Box(
                 modifier = Modifier
@@ -67,7 +67,7 @@ fun MoviePoster(
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
+                        .padding(horizontal = 8.dp)
                 )
             }
         }
@@ -79,6 +79,6 @@ fun MoviePoster(
 fun MoviePosterPreview() {
     MoviePoster(
         movie = sampleMovies[2],
-        onTap = {},
+        onTap = {}
     )
 }

@@ -11,7 +11,7 @@ import com.andrii.movieapp.ui.components.WatchLaterMovieList
 fun WatchLaterScreen(
     viewModel: WatchLaterMovieListViewModel,
     screenOrientation: Int,
-    onMoviePosterTap: (movieId: Long) -> Unit,
+    onMoviePosterTap: (movieId: Long) -> Unit
 ) {
     val state by viewModel.uiState.collectAsState()
 
@@ -21,7 +21,7 @@ fun WatchLaterScreen(
         is WatchLaterMovieListState.Success -> WatchLaterMovieList(
             movieListState = state as WatchLaterMovieListState.Success,
             screenOrientation = screenOrientation,
-            onMoviePosterTap = onMoviePosterTap,
+            onMoviePosterTap = onMoviePosterTap
         )
 
         is WatchLaterMovieListState.Error -> GenericError()

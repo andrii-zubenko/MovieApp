@@ -40,9 +40,8 @@ fun MovieDetails(
     movie: Movie,
     modifier: Modifier = Modifier,
     onAddToWatchLaterTap: () -> Unit,
-    onAddToWatchedTap: () -> Unit,
+    onAddToWatchedTap: () -> Unit
 ) {
-
     var watchedStatus by rememberSaveable { mutableStateOf(movie.watchedStatus) }
     val context = LocalContext.current
 
@@ -53,7 +52,7 @@ fun MovieDetails(
                     start = 10.dp,
                     end = 10.dp,
                     top = 10.dp,
-                    bottom = 70.dp,
+                    bottom = 70.dp
                 )
             )
             .verticalScroll(enabled = true, state = rememberScrollState())
@@ -66,7 +65,7 @@ fun MovieDetails(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(285.dp),
-            contentDescription = stringResource(R.string.movie_large_poster),
+            contentDescription = stringResource(R.string.movie_large_poster)
         )
 
         Column(
@@ -118,9 +117,8 @@ fun MovieDetails(
                 .padding(all = 8.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-
             Button(
                 onClick = {
                     watchedStatus = WatchedStatus.WATCHED.statusString
@@ -131,7 +129,7 @@ fun MovieDetails(
                     containerColor = MaterialTheme.colorScheme.secondary,
                     contentColor = MaterialTheme.colorScheme.onSurface,
                     disabledContainerColor = MaterialTheme.colorScheme.surface,
-                    disabledContentColor = MaterialTheme.colorScheme.onSurface,
+                    disabledContentColor = MaterialTheme.colorScheme.onSurface
                 ),
                 modifier = Modifier.width(180.dp),
                 enabled = watchedStatus != WatchedStatus.WATCHED.statusString
@@ -144,7 +142,6 @@ fun MovieDetails(
                     },
                     color = MaterialTheme.colorScheme.onSurface
                 )
-
             }
 
             Button(
@@ -157,12 +154,11 @@ fun MovieDetails(
                     containerColor = MaterialTheme.colorScheme.secondary,
                     contentColor = MaterialTheme.colorScheme.onSurface,
                     disabledContainerColor = MaterialTheme.colorScheme.surface,
-                    disabledContentColor = MaterialTheme.colorScheme.onSurface,
+                    disabledContentColor = MaterialTheme.colorScheme.onSurface
                 ),
                 modifier = Modifier.width(150.dp),
                 enabled = watchedStatus != WatchedStatus.WATCH_LATER.statusString
-            )
-            {
+            ) {
                 Text(
                     text = if (watchedStatus != WatchedStatus.WATCH_LATER.statusString) {
                         stringResource(R.string.watch_later_button)
@@ -171,9 +167,7 @@ fun MovieDetails(
                     },
                     color = MaterialTheme.colorScheme.onSurface
                 )
-
             }
-
         }
     }
 }
@@ -185,6 +179,6 @@ fun PreviewMovieDetails() {
         movie = sampleMovies.first(),
         modifier = Modifier,
         onAddToWatchLaterTap = {},
-        onAddToWatchedTap = {},
+        onAddToWatchedTap = {}
     )
 }

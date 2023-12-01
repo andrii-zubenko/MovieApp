@@ -15,12 +15,11 @@ fun GenericError(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
-    )
-    {
+    ) {
         Text(
             text = stringResource(R.string.oops_something_is_not_right),
             color = MaterialTheme.colorScheme.onSurface,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }

@@ -17,7 +17,7 @@ fun MoviePosterLoading(
         modifier = modifier
             .height(330.dp)
             .fillMaxWidth()
-            .shimmerEffect(),
+            .shimmerEffect()
     ) {
     }
 }

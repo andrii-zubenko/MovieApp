@@ -1,6 +1,5 @@
 package com.andrii.movieapp.repositories.popular
 
-import com.andrii.movieapp.BuildConfig
 import com.andrii.movieapp.database.popular.PopularMovieDao
 import com.andrii.movieapp.models.Movie
 import com.andrii.movieapp.models.WatchedStatus
@@ -16,7 +15,7 @@ import kotlinx.coroutines.launch
 class PopularMovieRepositoryImpl(
     private val service: MovieService,
     private val prefs: MoviePrefs,
-    private val popularMovieDao: PopularMovieDao,
+    private val popularMovieDao: PopularMovieDao
 ) : PopularMovieRepository {
 
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)

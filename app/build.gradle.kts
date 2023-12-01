@@ -7,6 +7,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -46,7 +47,7 @@ android {
             "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
             "-opt-in=androidx.compose.material.ExperimentalMaterialApi",
             "-opt-in=androidx.lifecycle.viewmodel.compose.SavedStateHandleSaveableApi",
-            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
         )
     }
     buildFeatures {
@@ -76,7 +77,7 @@ dependencies {
     implementation(libs.retrofit.moshi)
     implementation(libs.retrofit.moshi.converter)
     implementation(libs.coil)
-    implementation (libs.core.splashscreen)
+    implementation(libs.core.splashscreen)
 
     implementation(libs.room)
     implementation(libs.room.runtime)
@@ -109,4 +110,9 @@ dependencies {
 // Allow references to generated code
 kapt {
     correctErrorTypes = true
+}
+
+ktlint {
+    ignoreFailures.set(false) // Set to true if you want the build to continue even if Ktlint finds issues
+    verbose.set(true) // Set to true for more detailed output
 }

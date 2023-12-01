@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchLaterMovieListViewModel @Inject constructor(
-    private val popularMovieRepository: PopularMovieRepository,
+    private val popularMovieRepository: PopularMovieRepository
 ) : ViewModel() {
 
     private val _uiState =
@@ -32,7 +32,7 @@ class WatchLaterMovieListViewModel @Inject constructor(
                     _uiState.value = WatchLaterMovieListState.Success(
                         movies = it.filter { movie ->
                             movie.watchedStatus == WatchedStatus.WATCH_LATER.statusString
-                        },
+                        }
                     )
                 }
         }

@@ -18,7 +18,7 @@ fun WatchedMovieList(
     modifier: Modifier = Modifier,
     movieListState: WatchedMovieListState.Success,
     screenOrientation: Int,
-    onMoviePosterTap: (movieId: Long) -> Unit,
+    onMoviePosterTap: (movieId: Long) -> Unit
 ) {
     if (movieListState.movies.isEmpty()) {
         NoMoviesAdded()
@@ -36,7 +36,7 @@ fun WatchedMovieList(
                 start = 10.dp,
                 end = 10.dp,
                 top = 10.dp,
-                bottom = 70.dp,
+                bottom = 70.dp
             )
         ) {
             items(count = movieListState.movies.size) { index ->
@@ -56,6 +56,6 @@ fun WatchedMovieListPreview() {
     WatchedMovieList(
         movieListState = WatchedMovieListState.Success(movies = sampleMovies),
         screenOrientation = Configuration.ORIENTATION_PORTRAIT,
-        onMoviePosterTap = {},
+        onMoviePosterTap = {}
     )
 }

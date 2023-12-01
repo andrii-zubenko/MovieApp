@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PopularMovieListViewModel @Inject constructor(
-    private val repository: PopularMovieRepository,
+    private val repository: PopularMovieRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<PopularMovieListState>(PopularMovieListState.Loading)
@@ -29,7 +29,7 @@ class PopularMovieListViewModel @Inject constructor(
                 .collect {
                     _uiState.value = PopularMovieListState.Success(
                         movies = it,
-                        lastUpdatedDate = repository.getLastUpdatedDate(),
+                        lastUpdatedDate = repository.getLastUpdatedDate()
                     )
                 }
         }

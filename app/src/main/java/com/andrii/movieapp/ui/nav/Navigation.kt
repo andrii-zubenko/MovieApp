@@ -17,7 +17,7 @@ import com.andrii.movieapp.ui.screens.watchlater.WatchLaterScreen
 @Composable
 fun Navigation(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val screenOrientation = LocalConfiguration.current.orientation
 
@@ -28,24 +28,25 @@ fun Navigation(
                 screenOrientation = screenOrientation,
                 onMoviePosterTap = { movieIndex ->
                     navController.navigate("${MovieDetails.route}/$movieIndex")
-                },
+                }
             )
         }
 
         composable(
             route = MovieDetails.routeWithArg,
-            arguments = listOf(navArgument(MovieDetails.movieIdArg) {
-                type = NavType.LongType
-            }),
+            arguments = listOf(
+                navArgument(MovieDetails.movieIdArg) {
+                    type = NavType.LongType
+                }
+            )
         ) { backStackEntry ->
             val movieId = backStackEntry.arguments!!.getLong(MovieDetails.movieIdArg)
             MovieDetailsScreen(
                 movieId = movieId,
                 viewModel = hiltViewModel(),
-                onNavigateUp = { navController.navigateUp() },
+                onNavigateUp = { navController.navigateUp() }
             )
         }
-
 
         composable(WatchLater.route) {
             WatchLaterScreen(
@@ -55,7 +56,7 @@ fun Navigation(
                     navController.navigate(
                         "${MovieDetails.route}/$movieId"
                     )
-                },
+                }
             )
         }
 
@@ -67,7 +68,7 @@ fun Navigation(
                     navController.navigate(
                         "${MovieDetails.route}/$movieId"
                     )
-                },
+                }
             )
         }
     }

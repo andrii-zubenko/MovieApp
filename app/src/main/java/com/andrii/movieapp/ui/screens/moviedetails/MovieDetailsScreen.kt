@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.Flow
 fun MovieDetailsScreen(
     movieId: Long,
     viewModel: MovieDetailsViewModel,
-    onNavigateUp: () -> Unit,
+    onNavigateUp: () -> Unit
 ) {
     viewModel.getSelectedMovie(movieId)
     Column {
@@ -44,7 +44,7 @@ fun MovieDetailsScreen(
                     }
                 )
             },
-            content = {paddingValues ->
+            content = { paddingValues ->
                 MovieDetails(
                     movie = viewModel.selectedMovie.value!!,
                     modifier = Modifier.padding(paddingValues),
@@ -91,6 +91,6 @@ fun PreviewMovieDetailsScreen() {
                 }
             }
         ),
-        onNavigateUp = {},
+        onNavigateUp = {}
     )
 }

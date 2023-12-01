@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WatchedMovieListViewModel @Inject constructor(
-    private val popularMovieRepository: PopularMovieRepository,
+    private val popularMovieRepository: PopularMovieRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<WatchedMovieListState>(WatchedMovieListState.Loading)
@@ -31,7 +31,7 @@ class WatchedMovieListViewModel @Inject constructor(
                     _uiState.value = WatchedMovieListState.Success(
                         movies = it.filter { movie ->
                             movie.watchedStatus == WatchedStatus.WATCHED.statusString
-                        },
+                        }
                     )
                 }
         }

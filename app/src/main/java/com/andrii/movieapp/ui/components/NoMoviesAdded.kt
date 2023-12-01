@@ -19,7 +19,7 @@ fun NoMoviesAdded() {
         Text(
             text = stringResource(R.string.no_movies_added_yet),
             color = MaterialTheme.colorScheme.onSurface,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }

@@ -26,5 +26,4 @@ class PersistenceModule {
     fun providePopularMovieDatabase(@ApplicationContext context: Context): PopularMovieDatabase {
         return PopularMovieDatabase.buildDatabase(context)
     }
-
 }

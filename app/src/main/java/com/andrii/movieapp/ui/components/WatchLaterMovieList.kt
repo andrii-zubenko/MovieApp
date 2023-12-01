@@ -16,7 +16,7 @@ fun WatchLaterMovieList(
     modifier: Modifier = Modifier,
     movieListState: WatchLaterMovieListState.Success,
     screenOrientation: Int,
-    onMoviePosterTap: (movieId: Long) -> Unit,
+    onMoviePosterTap: (movieId: Long) -> Unit
 ) {
     if (movieListState.movies.isEmpty()) {
         NoMoviesAdded()
@@ -34,7 +34,7 @@ fun WatchLaterMovieList(
                 start = 10.dp,
                 end = 10.dp,
                 top = 10.dp,
-                bottom = 70.dp,
+                bottom = 70.dp
             )
         ) {
             items(count = movieListState.movies.size) { index ->

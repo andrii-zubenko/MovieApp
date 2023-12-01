@@ -11,9 +11,8 @@ import com.andrii.movieapp.ui.components.MovieListLoading
 fun MovieListScreen(
     viewModel: PopularMovieListViewModel,
     screenOrientation: Int,
-    onMoviePosterTap: (movieId: Long) -> Unit,
+    onMoviePosterTap: (movieId: Long) -> Unit
 ) {
-
     val state by viewModel.uiState.collectAsState()
 
     when (state) {
@@ -23,12 +22,12 @@ fun MovieListScreen(
             movieListState = state as PopularMovieListState.Success,
             screenOrientation = screenOrientation,
             onMovieRowTap = onMoviePosterTap,
-            onPulRefresh = viewModel::fetchMovies,
+            onPulRefresh = viewModel::fetchMovies
         )
 
         is PopularMovieListState.Error -> MovieListError(
             error = (state as PopularMovieListState.Error).error,
-            onPulRefresh = viewModel::fetchMovies,
+            onPulRefresh = viewModel::fetchMovies
         )
     }
 }

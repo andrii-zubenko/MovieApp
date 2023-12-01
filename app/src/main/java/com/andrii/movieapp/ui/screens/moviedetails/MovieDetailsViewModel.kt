@@ -1,6 +1,5 @@
 package com.andrii.movieapp.ui.screens.moviedetails
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -14,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
     private val popularMovieRepository: PopularMovieRepository
-): ViewModel() {
+) : ViewModel() {
 
     private var _selectedMovie: MutableState<Movie?> = mutableStateOf(null)
     val selectedMovie = _selectedMovie

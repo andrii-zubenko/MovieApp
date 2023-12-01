@@ -37,7 +37,7 @@ fun MovieList(
     movieListState: PopularMovieListState.Success,
     screenOrientation: Int,
     onMovieRowTap: (movieId: Long) -> Unit,
-    onPulRefresh: () -> Unit,
+    onPulRefresh: () -> Unit
 ) {
     val refreshScope = rememberCoroutineScope()
     var refreshing by remember { mutableStateOf(false) }
@@ -76,7 +76,7 @@ fun MovieList(
                     start = 10.dp,
                     end = 10.dp,
                     top = 10.dp,
-                    bottom = 70.dp,
+                    bottom = 70.dp
                 )
             ) {
                 items(count = movieListState.movies.size) { index ->
@@ -101,7 +101,7 @@ fun MovieListPreviewPortrait() {
         movieListState = PopularMovieListState.Success(sampleMovies, "2023-11-29 16:37:15"),
         screenOrientation = Configuration.ORIENTATION_PORTRAIT,
         onMovieRowTap = {},
-        onPulRefresh = {},
+        onPulRefresh = {}
     )
 }
 
@@ -112,6 +112,6 @@ fun MovieListPreviewLandscape() {
         movieListState = PopularMovieListState.Success(sampleMovies, "2023-11-29 16:37:15"),
         screenOrientation = Configuration.ORIENTATION_LANDSCAPE,
         onMovieRowTap = {},
-        onPulRefresh = {},
+        onPulRefresh = {}
     )
 }

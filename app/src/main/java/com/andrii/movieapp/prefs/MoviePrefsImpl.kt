@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
-
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -33,5 +32,4 @@ class MoviePrefsImpl @Inject constructor(@ApplicationContext context: Context) :
     companion object {
         private val LAST_UPDATED_TIMESTAMP_KEY = stringPreferencesKey("last_updated")
     }
-
 }

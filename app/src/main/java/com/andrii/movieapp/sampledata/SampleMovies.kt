@@ -83,5 +83,5 @@ val sampleMovies = listOf(
         voteAverage = 7.6,
         overview = "Cherry drifts from college dropout to army medic in Iraq - anchored only by his true love, Emily. But after returning from the war with PTSD, his life spirals into drugs and crime as he struggles to find his place in the world.",
         releaseDate = "2021-02-26"
-    ),
+    )
 )
