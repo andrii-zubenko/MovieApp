@@ -1,4 +1,4 @@
-package com.andrii.movieapp.database.popular
+package com.andrii.movieapp.database
 
 import androidx.room.Dao
 import androidx.room.Insert

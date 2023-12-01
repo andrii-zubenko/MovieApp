@@ -1,10 +1,10 @@
 package com.andrii.movieapp.di
 
-import com.andrii.movieapp.database.popular.PopularMovieDatabase
+import com.andrii.movieapp.database.PopularMovieDatabase
 import com.andrii.movieapp.network.MovieService
 import com.andrii.movieapp.prefs.MoviePrefs
-import com.andrii.movieapp.repositories.popular.PopularMovieRepository
-import com.andrii.movieapp.repositories.popular.PopularMovieRepositoryImpl
+import com.andrii.movieapp.repositories.PopularMovieRepository
+import com.andrii.movieapp.repositories.PopularMovieRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

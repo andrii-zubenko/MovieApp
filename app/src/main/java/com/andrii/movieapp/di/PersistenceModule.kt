@@ -1,7 +1,7 @@
 package com.andrii.movieapp.di
 
 import android.content.Context
-import com.andrii.movieapp.database.popular.PopularMovieDatabase
+import com.andrii.movieapp.database.PopularMovieDatabase
 import com.andrii.movieapp.prefs.MoviePrefs
 import com.andrii.movieapp.prefs.MoviePrefsImpl
 import dagger.Module

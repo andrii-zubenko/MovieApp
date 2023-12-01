@@ -15,7 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.andrii.movieapp.R
 import com.andrii.movieapp.models.Movie
-import com.andrii.movieapp.repositories.popular.PopularMovieRepository
+import com.andrii.movieapp.repositories.PopularMovieRepository
 import com.andrii.movieapp.sampledata.sampleMovies
 import com.andrii.movieapp.ui.components.MovieDetails
 import kotlinx.coroutines.flow.Flow

@@ -1,6 +1,6 @@
-package com.andrii.movieapp.repositories.popular
+package com.andrii.movieapp.repositories
 
-import com.andrii.movieapp.database.popular.PopularMovieDao
+import com.andrii.movieapp.database.PopularMovieDao
 import com.andrii.movieapp.models.Movie
 import com.andrii.movieapp.models.WatchedStatus
 import com.andrii.movieapp.network.MovieService

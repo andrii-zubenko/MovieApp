@@ -3,7 +3,7 @@ package com.andrii.movieapp.ui.screens.watched
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andrii.movieapp.models.WatchedStatus
-import com.andrii.movieapp.repositories.popular.PopularMovieRepository
+import com.andrii.movieapp.repositories.PopularMovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

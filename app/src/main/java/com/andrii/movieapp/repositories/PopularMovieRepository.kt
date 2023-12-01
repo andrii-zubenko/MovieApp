@@ -1,4 +1,4 @@
-package com.andrii.movieapp.repositories.popular
+package com.andrii.movieapp.repositories
 
 import com.andrii.movieapp.models.Movie
 import kotlinx.coroutines.flow.Flow

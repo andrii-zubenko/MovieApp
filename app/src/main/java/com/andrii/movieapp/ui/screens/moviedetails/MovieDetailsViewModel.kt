@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andrii.movieapp.models.Movie
-import com.andrii.movieapp.repositories.popular.PopularMovieRepository
+import com.andrii.movieapp.repositories.PopularMovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
