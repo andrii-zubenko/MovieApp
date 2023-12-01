@@ -8,6 +8,7 @@ lifecycle-runtime-ktx = "2.6.2"
 activity-compose = "1.8.0"
 compose-bom = "2023.10.01"
 compose-ui = "1.6.0-beta02"
+secretsGradlePlugin = "2.0.1"
 viewModelVersion = "2.6.2"
 androidx-activity = "1.8.0"
 kotlinx-coroutines = "1.7.3"
@@ -98,6 +99,9 @@ assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 
 # Turbine
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+
+# Secrets Gradle Plugin
+secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -1,6 +1,6 @@
 package com.andrii.movieapp.repositories.popular
 
-import com.andrii.movieapp.API_KEY
+import com.andrii.movieapp.BuildConfig
 import com.andrii.movieapp.database.popular.PopularMovieDao
 import com.andrii.movieapp.models.Movie
 import com.andrii.movieapp.models.WatchedStatus
@@ -39,7 +39,7 @@ class PopularMovieRepositoryImpl(
         val watchedMovies = popularMovieDao.getWatchedMovies()
 
         try {
-            val moviesResponse = service.getPopularMovies(API_KEY)
+            val moviesResponse = service.getPopularMovies()
 
             popularMovieDao.deleteAllMovies()
 

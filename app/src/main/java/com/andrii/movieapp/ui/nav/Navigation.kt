@@ -17,6 +17,7 @@ import com.andrii.movieapp.ui.screens.watchlater.WatchLaterScreen
 @Composable
 fun Navigation(
     navController: NavHostController,
+    modifier: Modifier = Modifier,
 ) {
     val screenOrientation = LocalConfiguration.current.orientation
 

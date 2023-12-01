@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.hilt)
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
