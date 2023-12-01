@@ -21,7 +21,7 @@ fun Navigation(
 ) {
     val screenOrientation = LocalConfiguration.current.orientation
 
-    NavHost(navController = navController, startDestination = MovieList.route) {
+    NavHost(navController = navController, startDestination = MovieList.route, modifier = modifier) {
         composable(MovieList.route) {
             MovieListScreen(
                 viewModel = hiltViewModel(),
