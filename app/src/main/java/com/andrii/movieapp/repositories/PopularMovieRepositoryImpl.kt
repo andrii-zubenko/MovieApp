@@ -1,5 +1,6 @@
 package com.andrii.movieapp.repositories
 
+import android.util.Log
 import com.andrii.movieapp.database.PopularMovieDao
 import com.andrii.movieapp.models.Movie
 import com.andrii.movieapp.models.WatchedStatus
@@ -63,6 +64,7 @@ class PopularMovieRepositoryImpl(
                 throw Throwable("Request failed: ${moviesResponse.errorBody()}")
             }
         } catch (e: Throwable) {
+            Log.e("PopularMovieRepository", "Error: $e")
             _popularMovies.value = emptyList()
             _popularMovies.value = popularMovieDao.getAllMovies()
         }
