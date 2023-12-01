@@ -24,8 +24,8 @@ MovieApp is an Android application that displays popular movies by utilizing The
 <img src="/preview/2.png" />
 </p>
 
-<img src="/preview/preview0.gif" align="left" width="32%"/>
-<img src="/preview/preview0.gif" align="right" width="32%"/>
+<img src="/preview/pull_to_refresh.gif" align="left" width="32%"/>
+<img src="/preview/shimmer_animation.gif" align="right" width="32%"/>
 
 ## Technologies Used
 
