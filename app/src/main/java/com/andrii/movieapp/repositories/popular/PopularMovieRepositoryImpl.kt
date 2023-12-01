@@ -59,7 +59,7 @@ class PopularMovieRepositoryImpl(
                     }
                 popularMovieDao.addMovies(*movies.toTypedArray())
                 prefs.setLastUpdatedDate()
-                movies
+                movies.shuffled()
             } else {
                 throw Throwable("Request failed: ${moviesResponse.errorBody()}")
             }

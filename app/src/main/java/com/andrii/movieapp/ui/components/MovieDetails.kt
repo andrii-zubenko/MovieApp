@@ -1,5 +1,6 @@
 package com.andrii.movieapp.ui.components
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -37,12 +38,13 @@ import com.andrii.movieapp.sampledata.sampleMovies
 @Composable
 fun MovieDetails(
     movie: Movie,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     onAddToWatchLaterTap: () -> Unit,
     onAddToWatchedTap: () -> Unit,
 ) {
 
     var watchedStatus by rememberSaveable { mutableStateOf(movie.watchedStatus) }
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
@@ -112,7 +114,7 @@ fun MovieDetails(
         )
 
         Row(
-            modifier = modifier
+            modifier = Modifier
                 .padding(all = 8.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -123,6 +125,7 @@ fun MovieDetails(
                 onClick = {
                     watchedStatus = WatchedStatus.WATCHED.statusString
                     onAddToWatchedTap()
+                    Toast.makeText(context, "Added to Watched", Toast.LENGTH_SHORT).show()
                 },
                 colors = ButtonColors(
                     containerColor = MaterialTheme.colorScheme.secondary,
@@ -148,6 +151,7 @@ fun MovieDetails(
                 onClick = {
                     watchedStatus = WatchedStatus.WATCH_LATER.statusString
                     onAddToWatchLaterTap()
+                    Toast.makeText(context, "Added to Watch Later", Toast.LENGTH_SHORT).show()
                 },
                 colors = ButtonColors(
                     containerColor = MaterialTheme.colorScheme.secondary,
@@ -155,7 +159,7 @@ fun MovieDetails(
                     disabledContainerColor = MaterialTheme.colorScheme.surface,
                     disabledContentColor = MaterialTheme.colorScheme.onSurface,
                 ),
-                modifier = Modifier.width(180.dp),
+                modifier = Modifier.width(150.dp),
                 enabled = watchedStatus != WatchedStatus.WATCH_LATER.statusString
             )
             {

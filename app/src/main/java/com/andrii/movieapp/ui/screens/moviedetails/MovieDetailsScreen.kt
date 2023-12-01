@@ -44,7 +44,7 @@ fun MovieDetailsScreen(
                     }
                 )
             },
-            content = { paddingValues ->
+            content = {paddingValues ->
                 MovieDetails(
                     movie = viewModel.selectedMovie.value!!,
                     modifier = Modifier.padding(paddingValues),
