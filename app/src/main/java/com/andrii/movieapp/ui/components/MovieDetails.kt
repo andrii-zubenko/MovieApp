@@ -131,7 +131,7 @@ fun MovieDetails(
                     disabledContainerColor = MaterialTheme.colorScheme.surface,
                     disabledContentColor = MaterialTheme.colorScheme.onSurface
                 ),
-                modifier = Modifier.width(180.dp),
+                modifier = Modifier.width(150.dp),
                 enabled = watchedStatus != WatchedStatus.WATCHED.statusString
             ) {
                 Text(

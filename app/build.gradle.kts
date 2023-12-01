@@ -16,12 +16,12 @@ android {
 
     defaultConfig {
         applicationId = "com.andrii.movieapp"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.andrii.movieapp.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
