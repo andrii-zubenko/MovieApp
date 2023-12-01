@@ -60,7 +60,7 @@ fun MovieDetails(
                     start = 10.dp,
                     end = 10.dp,
                     top = 10.dp,
-                    bottom = 70.dp
+                    bottom = 10.dp
                 )
             )
             .verticalScroll(enabled = true, state = rememberScrollState())
