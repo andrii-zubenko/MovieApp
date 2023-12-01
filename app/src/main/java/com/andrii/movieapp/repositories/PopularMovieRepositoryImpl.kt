@@ -27,13 +27,20 @@ class PopularMovieRepositoryImpl(
     override val popularMovies: Flow<List<Movie>> = _popularMovies.asStateFlow()
 
     init {
+        collectLastUpdatedFlow()
+        collectIsFromApiFlow()
+    }
+
+    private fun collectLastUpdatedFlow() {
         coroutineScope.launch {
             prefs.getLastUpdatedDate()
                 .collect { date ->
                     _lastUpdatedDate.value = date
                 }
         }
+    }
 
+    private fun collectIsFromApiFlow() {
         coroutineScope.launch {
             prefs.getIsFromApiValue()
                 .collect { isFromApi ->
@@ -79,6 +86,8 @@ class PopularMovieRepositoryImpl(
             _popularMovies.value = popularMovieDao.getAllMovies()
             prefs.setIsFromApiValue(false)
         }
+        collectLastUpdatedFlow()
+        collectIsFromApiFlow()
     }
 
     override fun getMovie(id: Long): Movie? {
