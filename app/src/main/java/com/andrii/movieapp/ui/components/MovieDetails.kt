@@ -130,11 +130,15 @@ fun MovieDetails(
                     disabledContainerColor = MaterialTheme.colorScheme.surface,
                     disabledContentColor = MaterialTheme.colorScheme.onSurface,
                 ),
-                modifier = Modifier.width(150.dp),
+                modifier = Modifier.width(180.dp),
                 enabled = watchedStatus != WatchedStatus.WATCHED.statusString
             ) {
                 Text(
-                    text = stringResource(R.string.watched_it),
+                    text = if (watchedStatus != WatchedStatus.WATCHED.statusString) {
+                        stringResource(R.string.watched)
+                    } else {
+                        stringResource(R.string.watched_checkmark)
+                    },
                     color = MaterialTheme.colorScheme.onSurface
                 )
 
@@ -151,12 +155,16 @@ fun MovieDetails(
                     disabledContainerColor = MaterialTheme.colorScheme.surface,
                     disabledContentColor = MaterialTheme.colorScheme.onSurface,
                 ),
-                modifier = Modifier.width(150.dp),
+                modifier = Modifier.width(180.dp),
                 enabled = watchedStatus != WatchedStatus.WATCH_LATER.statusString
             )
             {
                 Text(
-                    text = stringResource(R.string.watch_later_button),
+                    text = if (watchedStatus != WatchedStatus.WATCH_LATER.statusString) {
+                        stringResource(R.string.watch_later_button)
+                    } else {
+                        stringResource(R.string.watch_later_checkmark)
+                    },
                     color = MaterialTheme.colorScheme.onSurface
                 )
 

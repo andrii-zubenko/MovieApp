@@ -11,6 +11,7 @@
     <string name="released">Released: %1$s</string>
     <string name="no_movies_added_yet">No movies added yet</string>
     <string name="overview">Overview</string>
-    <string name="watched_it">Watched It</string>
     <string name="watch_later_button">Watch Later</string>
+    <string name="watched_checkmark">Watched ✓</string>
+    <string name="watch_later_checkmark">Watch Later ✓</string>
 </resources>
