@@ -68,8 +68,10 @@ MovieApp is an Android application that displays popular movies by utilizing The
 
 3. **API Key**:
 
-   Add your [The Movie DB](https://www.themoviedb.org/)'s API key in local.properties file.
+   Add your [The Movie DB](https://www.themoviedb.org/)'s API key in `local.properties file`.
+   ```
    apiKey=00000000000000
+   ```
 
 4. **Run the app**:
 
