@@ -17,15 +17,15 @@ MovieApp is an Android application that displays popular movies by utilizing The
 - **Pull to Refresh**: Pull to refresh functionality to update the Popular Movies list.
 
 <p align="center">
-<img src="/previews/1.png" />
+<img src="/preview/1.png" />
 </p>
 
 <p align="center">
-<img src="/previews/2.png" />
+<img src="/preview/2.png" />
 </p>
 
-<img src="/previews/preview0.gif" align="left" width="32%"/>
-<img src="/previews/preview0.gif" align="right" width="32%"/>
+<img src="/preview/preview0.gif" align="left" width="32%"/>
+<img src="/preview/preview0.gif" align="right" width="32%"/>
 
 ## Technologies Used
 
