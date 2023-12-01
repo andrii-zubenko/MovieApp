@@ -36,5 +36,17 @@ class WatchLaterMovieListViewModel @Inject constructor(
                     )
                 }
         }
+        fetchMovies()
+    }
+
+    fun fetchMovies() {
+        _uiState.value = WatchLaterMovieListState.Loading
+        viewModelScope.launch {
+            try {
+                popularMovieRepository.fetchMovies()
+            } catch (e: Throwable) {
+                _uiState.value = WatchLaterMovieListState.Error(e)
+            }
+        }
     }
 }
