@@ -23,9 +23,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.andrii.movieapp.R
 import com.andrii.movieapp.sampledata.sampleMovies
 import com.andrii.movieapp.ui.screens.populramovielist.PopularMovieListState
 import com.andrii.movieapp.utils.formatTimestamp
@@ -57,10 +60,29 @@ fun MovieList(
             contentAlignment = Alignment.Center
 
         ) {
-            Text(
-                text = "Last updated on: ${formatTimestamp(movieListState.lastUpdatedDate)}",
-                color = MaterialTheme.colorScheme.secondary
-            )
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = stringResource(
+                        R.string.last_live_update_on,
+                        formatTimestamp(movieListState.lastUpdatedDate)
+                    ),
+                    color = MaterialTheme.colorScheme.secondary,
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = if (movieListState.fromApi) {
+                        stringResource(R.string.data_loaded_from_api)
+                    } else {
+                        stringResource(R.string.data_loaded_from_local_storage)
+                    },
+                    color = MaterialTheme.colorScheme.secondary,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
         Box(Modifier.pullRefresh(state)) {
             LazyVerticalGrid(
@@ -98,7 +120,11 @@ fun MovieList(
 @Composable
 fun MovieListPreviewPortrait() {
     MovieList(
-        movieListState = PopularMovieListState.Success(sampleMovies, "2023-11-29 16:37:15"),
+        movieListState = PopularMovieListState.Success(
+            movies = sampleMovies,
+            lastUpdatedDate = "2023-11-29 16:37:15",
+            fromApi = false
+        ),
         screenOrientation = Configuration.ORIENTATION_PORTRAIT,
         onMovieRowTap = {},
         onPulRefresh = {}
@@ -109,7 +135,11 @@ fun MovieListPreviewPortrait() {
 @Composable
 fun MovieListPreviewLandscape() {
     MovieList(
-        movieListState = PopularMovieListState.Success(sampleMovies, "2023-11-29 16:37:15"),
+        movieListState = PopularMovieListState.Success(
+            movies = sampleMovies,
+            lastUpdatedDate = "2023-11-29 16:37:15",
+            fromApi = false
+        ),
         screenOrientation = Configuration.ORIENTATION_LANDSCAPE,
         onMovieRowTap = {},
         onPulRefresh = {}

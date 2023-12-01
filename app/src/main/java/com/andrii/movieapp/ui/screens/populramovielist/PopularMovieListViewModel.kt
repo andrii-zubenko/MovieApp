@@ -29,7 +29,8 @@ class PopularMovieListViewModel @Inject constructor(
                 .collect {
                     _uiState.value = PopularMovieListState.Success(
                         movies = it,
-                        lastUpdatedDate = repository.getLastUpdatedDate()
+                        lastUpdatedDate = repository.getLastUpdatedDate(),
+                        fromApi = repository.isFromApi(),
                     )
                 }
         }

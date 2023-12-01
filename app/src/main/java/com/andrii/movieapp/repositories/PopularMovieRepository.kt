@@ -9,6 +9,7 @@ interface PopularMovieRepository {
     suspend fun fetchMovies()
     fun getMovie(id: Long): Movie?
     fun getLastUpdatedDate(): String
+    fun isFromApi(): Boolean
     suspend fun addToWatchLater(movie: Movie)
     suspend fun addToWatched(movie: Movie)
 }

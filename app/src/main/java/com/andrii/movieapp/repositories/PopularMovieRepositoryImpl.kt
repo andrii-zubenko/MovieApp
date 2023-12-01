@@ -21,6 +21,7 @@ class PopularMovieRepositoryImpl(
 
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
     private var lastUpdatedDate: String = ""
+    private var isFromApi: Boolean = true
 
     private val _popularMovies: MutableStateFlow<List<Movie>> = MutableStateFlow(emptyList())
     override val popularMovies: Flow<List<Movie>> = _popularMovies.asStateFlow()
@@ -30,6 +31,13 @@ class PopularMovieRepositoryImpl(
             prefs.getLastUpdatedDate()
                 .collect { lastUpdated ->
                     lastUpdatedDate = lastUpdated
+                }
+        }
+
+        coroutineScope.launch {
+            prefs.getIsFromApiValue()
+                .collect { fromApi ->
+                    isFromApi = fromApi
                 }
         }
     }
@@ -59,6 +67,7 @@ class PopularMovieRepositoryImpl(
                     }
                 popularMovieDao.addMovies(*movies.toTypedArray())
                 prefs.setLastUpdatedDate()
+                prefs.setIsFromApiValue(true)
                 movies.shuffled()
             } else {
                 throw Throwable("Request failed: ${moviesResponse.errorBody()}")
@@ -67,6 +76,7 @@ class PopularMovieRepositoryImpl(
             Log.e("PopularMovieRepository", "Error: $e")
             _popularMovies.value = emptyList()
             _popularMovies.value = popularMovieDao.getAllMovies()
+            prefs.setIsFromApiValue(false)
         }
     }
 
@@ -76,6 +86,10 @@ class PopularMovieRepositoryImpl(
 
     override fun getLastUpdatedDate(): String {
         return lastUpdatedDate
+    }
+
+    override fun isFromApi(): Boolean {
+        return isFromApi
     }
 
     override suspend fun addToWatchLater(movie: Movie) {
