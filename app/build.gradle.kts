@@ -27,6 +27,10 @@ android {
         }
     }
 
+    testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -104,6 +108,8 @@ dependencies {
     androidTestImplementation(libs.mockk)
     androidTestImplementation(libs.hilt.android.test)
     kaptAndroidTest(libs.hilt.android.compiler)
+
+    androidTestUtil (libs.androidx.orchestrator)
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)

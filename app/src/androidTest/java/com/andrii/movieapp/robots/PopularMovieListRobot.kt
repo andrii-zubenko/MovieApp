@@ -46,7 +46,12 @@ class PopularMovieListRobot(
         dataSourceText.assertIsDisplayed()
     }
 
+    @OptIn(ExperimentalTestApi::class)
     fun tapOnFirstMoviePoster() {
+        composeTestRule.waitUntilAtLeastOneExists(
+            hasTestTag("${MOVIE_POSTER_TAG}_0"),
+            timeoutMillis = 5000
+        )
         firstMoviePoster.performClick()
     }
 }
