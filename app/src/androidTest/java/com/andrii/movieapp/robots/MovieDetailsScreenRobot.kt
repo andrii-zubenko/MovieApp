@@ -16,6 +16,7 @@ fun movieDetails(
     composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity>,
     func: MovieDetailsScreenRobot.() -> Unit
 ) = MovieDetailsScreenRobot(composeTestRule).apply { func() }
+
 class MovieDetailsScreenRobot(
     private val composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity>
 ) {
