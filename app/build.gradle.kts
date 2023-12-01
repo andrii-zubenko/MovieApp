@@ -109,7 +109,7 @@ dependencies {
     androidTestImplementation(libs.hilt.android.test)
     kaptAndroidTest(libs.hilt.android.compiler)
 
-    androidTestUtil (libs.androidx.orchestrator)
+    androidTestUtil(libs.androidx.orchestrator)
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
