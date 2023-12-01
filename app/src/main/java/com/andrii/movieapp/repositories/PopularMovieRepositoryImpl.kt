@@ -20,24 +20,24 @@ class PopularMovieRepositoryImpl(
 ) : PopularMovieRepository {
 
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
-    private var lastUpdatedDate: String = ""
-    private var isFromApi: Boolean = true
-
+    private val _lastUpdatedDate = MutableStateFlow(0L)
+    private val _isFromApi = MutableStateFlow(true)
     private val _popularMovies: MutableStateFlow<List<Movie>> = MutableStateFlow(emptyList())
+
     override val popularMovies: Flow<List<Movie>> = _popularMovies.asStateFlow()
 
     init {
         coroutineScope.launch {
             prefs.getLastUpdatedDate()
-                .collect { lastUpdated ->
-                    lastUpdatedDate = lastUpdated
+                .collect { date ->
+                    _lastUpdatedDate.value = date
                 }
         }
 
         coroutineScope.launch {
             prefs.getIsFromApiValue()
-                .collect { fromApi ->
-                    isFromApi = fromApi
+                .collect { isFromApi ->
+                    _isFromApi.value = isFromApi
                 }
         }
     }
@@ -66,7 +66,8 @@ class PopularMovieRepositoryImpl(
                         )
                     }
                 popularMovieDao.addMovies(*movies.toTypedArray())
-                prefs.setLastUpdatedDate()
+                val currentTimestamp = System.currentTimeMillis()
+                prefs.setLastUpdatedDate(currentTimestamp)
                 prefs.setIsFromApiValue(true)
                 movies.shuffled()
             } else {
@@ -84,12 +85,12 @@ class PopularMovieRepositoryImpl(
         return _popularMovies.value.firstOrNull { it.id == id }
     }
 
-    override fun getLastUpdatedDate(): String {
-        return lastUpdatedDate
+    override fun getLastUpdatedDate(): Long {
+        return _lastUpdatedDate.asStateFlow().value
     }
 
     override fun isFromApi(): Boolean {
-        return isFromApi
+        return _isFromApi.asStateFlow().value
     }
 
     override suspend fun addToWatchLater(movie: Movie) {

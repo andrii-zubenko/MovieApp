@@ -122,7 +122,7 @@ fun MovieListPreviewPortrait() {
     MovieList(
         movieListState = PopularMovieListState.Success(
             movies = sampleMovies,
-            lastUpdatedDate = "2023-11-29 16:37:15",
+            lastUpdatedDate = 1701401296104,
             fromApi = false
         ),
         screenOrientation = Configuration.ORIENTATION_PORTRAIT,
@@ -137,7 +137,7 @@ fun MovieListPreviewLandscape() {
     MovieList(
         movieListState = PopularMovieListState.Success(
             movies = sampleMovies,
-            lastUpdatedDate = "2023-11-29 16:37:15",
+            lastUpdatedDate = 1701401296104,
             fromApi = false
         ),
         screenOrientation = Configuration.ORIENTATION_LANDSCAPE,

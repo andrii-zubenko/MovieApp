@@ -78,8 +78,12 @@ fun PreviewMovieDetailsScreen() {
                     return sampleMovies.firstOrNull { it.id == id } ?: sampleMovies.first()
                 }
 
-                override fun getLastUpdatedDate(): String {
-                    return "2021-09-01"
+                override fun getLastUpdatedDate(): Long {
+                    return 1701401296104
+                }
+
+                override fun isFromApi(): Boolean {
+                    TODO("Not yet implemented")
                 }
 
                 override suspend fun addToWatchLater(movie: Movie) {

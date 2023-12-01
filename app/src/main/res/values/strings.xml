@@ -15,6 +15,6 @@
     <string name="watched_checkmark">Watched ✓</string>
     <string name="watch_later_checkmark">Watch Later ✓</string>
     <string name="last_live_update_on">Last live update on: %1$s</string>
-    <string name="data_loaded_from_api">Data Loaded from API</string>
-    <string name="data_loaded_from_local_storage">Data Loaded from local storage</string>
+    <string name="data_loaded_from_api">Loaded from API</string>
+    <string name="data_loaded_from_local_storage">Loaded from local storage</string>
 </resources>
