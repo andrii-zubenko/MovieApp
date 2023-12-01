@@ -1,6 +1,5 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("kapt")
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.hilt)
@@ -91,7 +90,7 @@ dependencies {
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
 
     implementation(libs.prefs)
 
@@ -107,17 +106,12 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     androidTestImplementation(libs.mockk)
     androidTestImplementation(libs.hilt.android.test)
-    kaptAndroidTest(libs.hilt.android.compiler)
+    kspAndroidTest(libs.hilt.android.compiler)
 
     androidTestUtil(libs.androidx.orchestrator)
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
-}
-
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
 }
 
 ktlint {

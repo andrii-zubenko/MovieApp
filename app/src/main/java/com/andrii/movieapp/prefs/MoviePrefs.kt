@@ -6,6 +6,6 @@ interface MoviePrefs {
     fun getLastUpdatedDate(): Flow<Long>
     fun getIsFromApiValue(): Flow<Boolean>
 
-    suspend fun setLastUpdatedDate(timestamp: Long)
+    suspend fun setLastUpdatedDate(timeStamp: Long)
     suspend fun setIsFromApiValue(isFromApi: Boolean)
 }
